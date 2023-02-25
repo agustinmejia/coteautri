@@ -9,7 +9,7 @@ class TemplateController extends Controller
     public function index()
     {
         
-        return view('layout-template.master');
+        return view('welcome');
     }
 
 }

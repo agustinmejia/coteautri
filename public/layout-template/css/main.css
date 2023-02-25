@@ -302,19 +302,26 @@ section {
 # Header
 --------------------------------------------------------------*/
 .header {
-  transition: all 0.5s;
+  transition: all 0.7s;
   z-index: 997;
   padding: 30px 0;
 }
 
-.header.sticked {
+.header.sticked{
   background: #01BFFF;
   padding: 15px 0;
   box-shadow: 0px 2px 20px rgba(225, 32, 29, 0.1);
+
+
+}
+#navlabel.sticked{
+  color: #0a0d13;
 }
 
+
+
 .header .logo img {
-  max-height: 40px;
+  max-height: 80px;
   margin-right: 6px;
 }
 
