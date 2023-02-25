@@ -46,6 +46,6 @@ class install extends Command
         $this->call('db:seed');
         $this->call('storage:link');
         $this->call('vendor:publish', ['--provider' => VoyagerServiceProvider::class, '--tag' => ['config', 'voyager_avatar']]);
-        $this->info('Gracias por instalar sys');
+        $this->info('Gracias por instalar syscommunication');
     }
 }
