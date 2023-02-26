@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\People;
+use App\Models\Telephony;
 
 class TemplateController extends Controller
 {
@@ -11,6 +12,23 @@ class TemplateController extends Controller
     {
         
         return view('welcome');
+    }
+
+    public function list($search = null){
+        if($search)
+        {
+            $paginate = 5;
+            // dump($paginate);
+            $data = Telephony::where(function($query) use ($search){
+                        $query->OrWhereRaw($search ? "full_name like '%$search%'" : 1)
+                        ->OrWhereRaw($search ? "phone like '%$search%'" : 1);
+                        })
+                        ->where('deleted_at', NULL)->orderBy('id', 'DESC')->paginate($paginate);
+                        // $data = 1;
+                        // dd($data->links());
+            return view('search', compact('data'));
+        }
+
     }
 
     public function store(Request $request)

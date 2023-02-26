@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\TelephonyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use App\Http\Controllers\TemplateController;
 |
 */
 Route::get('/', [TemplateController::class, 'index']);
+Route::get('home/search/{search?}', [TemplateController::class, 'list']);
+
 Route::get('login', function () {
     return redirect('admin/login');
 })->name('login');
@@ -21,8 +24,20 @@ Route::get('login', function () {
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+// Route::post('home/search', [TemplateController::class, 'search'])->name('home.search');
 Route::resource('coteautri', TemplateController::class);
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+
+    Route::resource('telephony', TelephonyController::class);
+    Route::get('telephony/ajax/list/{search?}', [TelephonyController::class, 'list']);
+    Route::post('telephony/importar', [TelephonyController::class, 'import'])->name('telephony.import');
+
+
+
+
+
+
 });
