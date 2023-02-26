@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use TCG\Voyager\Models\Role;
 
 class RolesTableSeeder extends Seeder
 {
@@ -14,29 +15,10 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
-        \DB::table('roles')->delete();
-        
-        \DB::table('roles')->insert(array (
-            0 => 
-            array (
-                'id' => 1,
-                'name' => 'admin',
-                'display_name' => 'Administrator',
-                'created_at' => '2023-02-25 04:00:55',
-                'updated_at' => '2023-02-25 04:00:55',
-            ),
-            1 => 
-            array (
-                'id' => 2,
-                'name' => 'user',
-                'display_name' => 'Normal User',
-                'created_at' => '2023-02-25 04:00:55',
-                'updated_at' => '2023-02-25 04:00:55',
-            ),
-        ));
-        
+        $role = Role::firstOrNew(['name' => 'admin']);
+        if (!$role->exists) {
+            $role->fill(['display_name' => __('voyager::seeders.roles.admin')])->save();
+        }
         
     }
 }
