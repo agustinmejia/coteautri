@@ -6,183 +6,139 @@
 
 @section('main')
 <main id="main">
-
-    <!-- ======= Featured Services Section ======= -->
-    <section id="featured-services" class="featured-services">
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact section-bg mt-5">
       <div class="container">
 
-        <div class="row gy-4">
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
-            <div class="icon flex-shrink-0"><i class="fa-solid fa-cart-flatbed"></i></div>
-            <div>
-              <h4 class="title">Lorem Ipsum</h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-              <a href="service-details.html" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
-            </div>
+          <div class="section-title">
+            <h2>Registrate..</h2>
+            <p>Regístrate como Usuario, Socios u otros!.</p>
           </div>
-          <!-- End Service Item -->
 
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon flex-shrink-0"><i class="fa-solid fa-truck"></i></div>
-            <div>
-              <h4 class="title">Dolor Sitema</h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-              <a href="service-details.html" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div><!-- End Service Item -->
+          <div class="row">
 
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon flex-shrink-0"><i class="fa-solid fa-truck-ramp-box"></i></div>
-            <div>
-              <h4 class="title">Sed ut perspiciatis</h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-              <a href="service-details.html" class="readmore stretched-link"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
+            <div class="col-lg-6">
+
+                <div class="row">
+                    <div class="col-md-12 div-img" style="height: 600px;">
+                        <img src="images/register/BUSCO-TRABAJO-3.jpeg" class="img-fluid" alt="">
+                    </div>
+                </div>
+
             </div>
-          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 mt-4 mt-lg-0">
+            <form  action="{{route('coteautri.store')}}" id="post-register" method="POST">
+              @csrf
+                  <div class="row">
+                      <div class="col-md-6 form-group mt-3 mt-md-0">
+                          <span ><b>Tipo</b></span>
+                          <select name="type" class="form-control select2bs4" required>
+                              <option value="">--Seleccione una opción--</option>
+                              <option value="Usuario">Usuario</option>
+                              <option value="Socio">Socio</option>
+                              <option value="otros">otros</option>
+                          </select>
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <span ><b>Carnet Identidad</b></span>
+                          <input type="text" name="ci" onkeypress='return validaNumericos(event)' class="form-control" id="ci" placeholder="7085555" value="{{ old('ci') }}" required>
+                          @error('ci')
+                              <div class="alert alert-danger">{{ $message }}</div>
+                          @enderror
+                      </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                      <div class="col-md-6 form-group">
+                          <span ><b>Nombre</b></span>
+                          <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Juan" required>
+                      </div>
+                      <div class="col-md-6 form-group mt-3 mt-md-0">
+                          <span ><b>Apellido</b></span>
+                          <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Ortiz Mendoza" required>
+                      </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                      <div class="col-md-6 form-group">
+                          <span ><b>Telefono</b></span>
+                          <input type="text" id="phone" name="phone" class="form-control" placeholder="7894878" onkeypress='return validaNumericos(event)'  required>
+                      </div>
+                     
+                      <div class="col-md-6 form-group">
+                          <span ><b>Email</b></span>
+                          <input type="email" name="email" class="form-control" id="email" placeholder="ejemplo@gmail.com"  value="{{ old('email') }}"required>
+                          @error('email')
+                              <div class="alert alert-danger">{{ $message }}</div>
+                          @enderror
+                      </div>
+                  </div>
+                  
+                  <br>
+
+                  <div style="text-align: right" >
+                      <button type="submit" class="btn btn-save-customer" id="btn-sumit" style="background-color: #ff9d00;">Registrar</button>
+                  </div>
+              </form>            
+          </div>
 
         </div>
-
       </div>
-    </section><!-- End Featured Services Section -->
+    </section><!-- End Contact Section -->
 
-    <!-- ======= About Us Section ======= -->
-    <section id="about" class="about pt-0">
-      <div class="container" data-aos="fade-up">
 
-        <div class="row gy-4">
-          <div class="col-lg-6 position-relative align-self-start order-lg-last order-first">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
-            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
-          </div>
-          <div class="col-lg-6 content order-last  order-lg-first">
-            <h3>About Us</h3>
-            <p>
-              Dolor iure expedita id fuga asperiores qui sunt consequatur minima. Quidem voluptas deleniti. Sit quia molestiae quia quas qui magnam itaque veritatis dolores. Corrupti totam ut eius incidunt reiciendis veritatis asperiores placeat.
-            </p>
-            <ul>
-              <li data-aos="fade-up" data-aos-delay="100">
-                <i class="bi bi-diagram-3"></i>
-                <div>
-                  <h5>Ullamco laboris nisi ut aliquip consequat</h5>
-                  <p>Magni facilis facilis repellendus cum excepturi quaerat praesentium libre trade</p>
-                </div>
-              </li>
-              <li data-aos="fade-up" data-aos-delay="200">
-                <i class="bi bi-fullscreen-exit"></i>
-                <div>
-                  <h5>Magnam soluta odio exercitationem reprehenderi</h5>
-                  <p>Quo totam dolorum at pariatur aut distinctio dolorum laudantium illo direna pasata redi</p>
-                </div>
-              </li>
-              <li data-aos="fade-up" data-aos-delay="300">
-                <i class="bi bi-broadcast"></i>
-                <div>
-                  <h5>Voluptatem et qui exercitationem</h5>
-                  <p>Et velit et eos maiores est tempora et quos dolorem autem tempora incidunt maxime veniam</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+</main>
 
-      </div>
-    </section><!-- End About Us Section -->
 
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
-      <div class="container">
+    {{-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>        
+        $(function()
+        {
+            // alert(1)
+            $('#post-register').submit(function(e){
+                e.preventDefault();
+                $('.btn-save-customer').attr('disabled', true);
+                $('.btn-save-customer').val('Guardando...');
+                // alert(1)
+                $.post($(this).attr('action'), $(this).serialize(), function(data){
+                    // alert(data.data.id)
+                    if(data.data.id){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Registado exitosamente..',
+                            showConfirmButton: false,
+                            timer: 1800
+                        })
+                        // alert(1)
+                        // toastr.success('Regsitrado..', 'Éxitos');
+                        // $(this).trigger('reset');
+                    }else{
+                        toastr.error(data.error, 'Error');
+                    }
+                })
+                .always(function(){
+                    // alert(2)
+                    $('.btn-save-customer').attr('disabled', false);
+                    // $('.btn-save-customer').text('Guardar');
+                    $('.btn-save-customer').val('Guardar');
+                    $('#ci').val('');
+                    $('#first_name').val('');
+                    $('#last_name').val('');
+                    $('#phone').val('');
+                    $('#email').val('');
+                    // $('#birthdate').val('');
+                    $('#type').val('').trigger('change');
 
-        <div class="slides-1 swiper" data-aos="fade-up">
-          <div class="swiper-wrapper">
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Testimonials Section -->
-
-  </main>
-
+                    // $('#modal-create-customer').modal('hide');
+                });
+            });
+        });
+    </script>
 @endsection
