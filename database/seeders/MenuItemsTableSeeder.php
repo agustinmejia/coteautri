@@ -259,6 +259,22 @@ class MenuItemsTableSeeder extends Seeder
                 'route' => 'print.download',
                 'parameters' => 'null',
             ),
+            15 => 
+            array (
+                'id' => 19,
+                'menu_id' => 1,
+                'title' => 'Usuarios Auth',
+                'url' => '',
+                'target' => '_self',
+                'icon_class' => 'fa-solid fa-print',
+                'color' => '#000000',
+                'parent_id' => 17,
+                'order' => 2,
+                'created_at' => '2023-02-27 19:47:26',
+                'updated_at' => '2023-02-27 19:47:33',
+                'route' => 'print.auth',
+                'parameters' => NULL,
+            ),
         ));
         
         
