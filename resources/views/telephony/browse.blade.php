@@ -1,6 +1,8 @@
 @extends('voyager::master')
 
 @section('page_title', 'Viendo Telefonia')
+@if (auth()->user()->hasPermission('browse_telephonies'))
+
 
 @section('page_header')
     <div class="container-fluid">
@@ -170,3 +172,10 @@
        
     </script>
 @stop
+
+@else
+    @section('content')
+        {{-- @include('errors.403') --}}
+        <h1>403</h1>
+    @stop
+@endif
