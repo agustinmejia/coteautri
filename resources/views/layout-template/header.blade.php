@@ -11,10 +11,8 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html" style="font-size: 20px"class="active">Inicio</a></li>
-          <li><a href="about.html" style="font-size: 20px" id="navlabel" class="navlabel">About</a></li>
-          <li><a href="services.html" style="font-size: 20px">Services</a></li>
-          <li><a href="contact.html" style="font-size: 20px">Contact</a></li>
+          <li><a href="{{url('/')}}" style="font-size: 20px"class="active">Inicio</a></li>
+          <li><a href="{{url('/')}}" style="font-size: 20px">Contact</a></li>
           <li><a class="get-a-quote"  style="font-size: 20px" href="login">Iniciar Sesión</a></li>
         </ul>
       </nav><!-- .navbar -->

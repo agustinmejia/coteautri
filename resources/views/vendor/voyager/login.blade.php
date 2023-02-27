@@ -32,6 +32,8 @@
                 <span class="signin">{{ __('voyager::generic.login') }}</span>
             </button>
 
+            &nbsp;&nbsp;&nbsp;
+            <a type="button" href="{{url('/')}}" class="btn btn-dark">Inicio</a>
         </form>
 
         <div style="clear:both"></div>

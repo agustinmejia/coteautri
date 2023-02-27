@@ -21,7 +21,7 @@ class TelephonyController extends Controller
                     $query->OrWhereRaw($search ? "full_name like '%$search%'" : 1)
                     ->OrWhereRaw($search ? "phone like '%$search%'" : 1);
                     })
-                    ->where('deleted_at', NULL)->orderBy('id', 'DESC')->paginate($paginate);
+                    ->where('deleted_at', NULL)->orderBy('full_name', 'ASC')->paginate($paginate);
                     // $data = 1;
                     // dd($data->links());
         return view('telephony.list', compact('data'));

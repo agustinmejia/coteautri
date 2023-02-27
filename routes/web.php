@@ -28,7 +28,7 @@ Route::get('login', function () {
 // Route::post('home/search', [TemplateController::class, 'search'])->name('home.search');
 Route::resource('coteautri', TemplateController::class);
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'loggin'], function () {
     Voyager::routes();
 
     Route::resource('telephony', TelephonyController::class);
@@ -41,3 +41,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 });
+
+Route::get('/admin/clear-cache', function() {
+    Artisan::call('optimize:clear');
+    return redirect('/admin')->with(['message' => 'Cache eliminada.', 'alert-type' => 'success']);
+})->name('clear.cache');
+

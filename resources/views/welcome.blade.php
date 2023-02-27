@@ -6,16 +6,8 @@
 
 @section('main')
 <main id="main">
-
-    <section>
-
-        
-    </section>
-
-
-
-
     <!-- ======= Contact Section ======= -->
+    @if (!auth()->user())        
     <section id="contact" class="contact section-bg mt-5">
         <div class="container">
 
@@ -26,27 +18,19 @@
 
             <div class="row">
 
-                {{-- <div class="col-lg-6">
-
-                    <div class="row">
-                        <div class="col-md-12 div-img" style="height: 600px;">
-                            <img src="images/register/BUSCO-TRABAJO-3.jpeg" class="img-fluid" alt="">
-                        </div>
-                    </div>
-
-                </div> --}}
+            
 
                 <div class="col-lg-6 mt-4 mt-lg-0">
-                    <form  action="{{route('coteautri.store')}}" id="post-register" method="POST">
+                    <form  action="{{route('coteautri.store')}}" id="post-register" class="was-validated" method="POST">
                     @csrf
                         <div class="row">
                             <div class="col-md-6 form-group mt-3 mt-md-0">
                                 <span ><b>Tipo</b></span>
-                                <select name="type" class="form-control select2bs4" required>
-                                    <option value="">--Seleccione una opción--</option>
-                                    <option value="Usuario">Usuario</option>
-                                    <option value="Socio">Socio</option>
-                                    <option value="otros">otros</option>
+                                <select name="type" id="type" class="form-control select2" required>
+                                    <option value="" disabled selected>--Seleccione una opción--</option>
+                                    <option value="Usuario" {{ old('type')=='Usuario'?'selected':'' }}>Usuario</option>
+                                    <option value="Socio" {{ old('type')=='Socio'?'selected':'' }}>Socio</option>
+                                    <option value="Otros" {{ old('type')=='Otros'?'selected':'' }}>Otros</option>
                                 </select>
                             </div>
                             <div class="col-md-6 form-group">
@@ -61,26 +45,55 @@
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <span ><b>Nombre</b></span>
-                                <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Juan" required>
+                                <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Juan" value="{{ old('first_name') }}" required>
+                                @error('first_name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-md-6 form-group mt-3 mt-md-0">
                                 <span ><b>Apellido</b></span>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Ortiz Mendoza" required>
+                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Ortiz Mendoza" value="{{ old('last_name') }}" required>
+                                @error('last_name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <span ><b>Telefono</b></span>
-                                <input type="text" id="phone" name="phone" class="form-control" placeholder="7894878" onkeypress='return validaNumericos(event)'  required>
-                            </div>
+                                <input type="text" id="phone" name="phone" class="form-control" placeholder="7894878" onkeypress='return validaNumericos(event)' value="{{ old('phone') }}" required>
+                                @error('phone')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>                          
                             
+                        </div>
+                        <hr>
+                        <div class="section-title">
+                            <h4>Acceso</h4>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6 form-group">
                                 <span ><b>Email</b></span>
-                                <input type="email" name="email" class="form-control" id="email" placeholder="ejemplo@gmail.com"  value="{{ old('email') }}"required>
+                                <input type="email" name="email" class="form-control" id="email" placeholder="ejemplo@gmail.com" required>
                                 @error('email')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
+                            </div>
+                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <span ><b>Contraseña</b></span>
+                                <div class="form-group">
+                                    <div class="input-group">                                  
+                                      <input type="password" class="form-control" name="password" id="password" id="email" placeholder="*********" required>                                 
+                                      <div class="input-group-prepend">
+                                        <button class="btn btn-primary" type="button" onclick="mostrarContrasena()" id="boton"><span class="fa fa-eye"></span></button>                                   
+                                      </div>
+                                    </div>
+                                </div>    
+                                @error('password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                    
                             </div>
                         </div>
                         
@@ -95,6 +108,7 @@
             </div>
         </div>
     </section><!-- End Contact Section -->
+    @endif
 
     
 
@@ -149,17 +163,14 @@
        
     </script>
     
-    <script>        
+    {{-- <script>        
         $(function()
         {
-            // alert(1)
             $('#post-register').submit(function(e){
                 e.preventDefault();
                 $('.btn-save-customer').attr('disabled', true);
                 $('.btn-save-customer').val('Guardando...');
-                // alert(1)
                 $.post($(this).attr('action'), $(this).serialize(), function(data){
-                    // alert(data.data.id)
                     if(data.data.id){
                         Swal.fire({
                             position: 'top-end',
@@ -168,31 +179,38 @@
                             showConfirmButton: false,
                             timer: 1800
                         })
-                        // alert(1)
-                        // toastr.success('Regsitrado..', 'Éxitos');
-                        // $(this).trigger('reset');
                     }else{
                         toastr.error(data.error, 'Error');
                     }
                 })
                 .always(function(){
-                    // alert(2)
                     $('.btn-save-customer').attr('disabled', false);
-                    // $('.btn-save-customer').text('Guardar');
                     $('.btn-save-customer').val('Guardar');
                     $('#ci').val('');
                     $('#first_name').val('');
                     $('#last_name').val('');
                     $('#phone').val('');
                     $('#email').val('');
-                    // $('#birthdate').val('');
                     $('#type').val('').trigger('change');
-
-
-                    // $('#modal-create-customer').modal('hide');
                 });
             });
         });
+    </script> --}}
+
+    <script>        
+        function mostrarContrasena(){
+            
+            var tipo = document.getElementById("password");
+                if(tipo.type == "password"){
+                    $('#boton').html('<span class="fa fa-eye-slash"></span>');
+                    $('#password').prop('type', 'text');
+                }
+                else
+                {
+                    $('#boton').html('<span class="fa fa-eye"></span>');
+                    $('#password').prop('type', 'password');
+                }
+        }
     </script>
 
 

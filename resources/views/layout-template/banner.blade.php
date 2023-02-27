@@ -7,7 +7,7 @@
 
         
           {{-- @csrf --}}
-            <input type="text" id="input-search" class="form-control" placeholder="Buscar..." style="width:500;height:50px">
+            <input type="text" id="input-search" class="form-control" placeholder="Buscar..." style="width:335;height:50px">
             {{-- <button type="submit" class="btn btn-primary">Search</button> --}}
           
 
@@ -50,7 +50,6 @@
         </div>
 
       </div>
-      <br>
       <br>
     
         <div class="row" id="div-results" style="min-height: 120px"></div>

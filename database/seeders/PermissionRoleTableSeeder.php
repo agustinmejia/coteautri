@@ -28,6 +28,15 @@ class PermissionRoleTableSeeder extends Seeder
         $role->permissions()->sync(
             $permissions->pluck('id')->all()
         );
+
+
+
+        //############## PEOPLE ######################
+        $role = Role::where('name', 'user')->firstOrFail();
+        $permissions = Permission::whereRaw('table_name = "admin" or
+                                            
+                                            `key` = "browse_clear-cache"')->get();
+        $role->permissions()->sync($permissions->pluck('id')->all());
         
         
     }
