@@ -1,7 +1,7 @@
 @extends('voyager::master')
 
 @section('page_title', 'Reporte Recaudacion Diaria')
-@if(auth()->user()->hasRole('admin'))
+@if(auth()->user()->hasPermission('browse_printdownload'))
 
 
 @section('page_header')

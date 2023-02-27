@@ -53,6 +53,17 @@ class PermissionsTableSeeder extends Seeder
         
         
 
+        $keys = [
+            'browse_printdownload',
+            'browse_printauth'
+        ];
+
+        foreach ($keys as $key) {
+            Permission::firstOrCreate([
+                'key'        => $key,
+                'table_name' => 'reports',
+            ]);
+        }
         
 
 

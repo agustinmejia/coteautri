@@ -1,7 +1,7 @@
 @extends('voyager::master')
 
 @section('page_title', 'Viendo Telefonia')
-@if (auth()->user()->hasPermission('browse_telephonies'))
+@if (auth()->user()->hasPermission('browse_telephony'))
 
 
 @section('page_header')
