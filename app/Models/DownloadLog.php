@@ -17,6 +17,7 @@ class DownloadLog extends Model
         'ip_address',
         'user_agent',
         'url',
-        'downloadType'
+        'downloadType',
+        'type'
     ];
 }

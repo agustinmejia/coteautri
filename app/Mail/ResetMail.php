@@ -34,6 +34,6 @@ class ResetMail extends Mailable
     public function build()
     {
         $name="ignacio";
-        return $this->view('emails.contactanos', compact('name'));
+        return $this->view('mail.reset', compact('name'));
     }
 }

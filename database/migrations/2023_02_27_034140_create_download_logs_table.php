@@ -15,6 +15,7 @@ class CreateDownloadLogsTable extends Migration
     {
         Schema::create('download_logs', function (Blueprint $table) {
             $table->id();
+            $table->string('type')->nullable();
             $table->foreignId('user_id')->nullable()->constrained('users');
             $table->string('user')->nullable();
             $table->string('email')->nullable();

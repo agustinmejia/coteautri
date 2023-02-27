@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="images/favicon.png">
 
-    <title>Mozcu</title>
+    <title>Cambiar Contraseña</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('restar/css/bootstrap.css')}}" rel="stylesheet">

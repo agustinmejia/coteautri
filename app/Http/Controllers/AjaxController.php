@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DownloadLog;
+use App\Models\People;
 
 class AjaxController extends Controller
 {
     public function downloadLg($cad)
     {
+        $people = People::where('user_id', Auth::user()->id)->first()->type;
         return DownloadLog::create([
+            'type'=> $people??'admin',
             'user_id'=>Auth::user()->id,
             'user'=>Auth::user()->name,
             'role'=>Auth::user()->role->name,

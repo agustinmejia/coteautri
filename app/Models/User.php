@@ -8,9 +8,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use Yadahan\AuthenticationLog\AuthenticationLogable;
+
 class User extends \TCG\Voyager\Models\User
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    // use HasApiTokens, HasFactory, Notifiable;
+
+    use HasFactory, Notifiable, AuthenticationLogable;
+
 
     /**
      * The attributes that are mass assignable.

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TemplateController;
@@ -43,6 +44,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'loggin'], function () {
 
 
     Route::get('download/log/{cad?}', [AjaxController::class, 'downloadLg'])->name('download.log');
+
+
+
+
+    // report
+    Route::get('print/dowload', [ReportController::class, 'indexDownload'])->name('print.download');
+    Route::post('print/dowload/list', [ReportController::class, 'listDownload'])->name('print-download.list');
 
 
 
