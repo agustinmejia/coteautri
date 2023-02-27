@@ -49,7 +49,7 @@ class PermissionsTableSeeder extends Seeder
 
 
         Permission::generateFor('people');
-        Permission::generateFor('telephonies');
+        Permission::generateFor('telephony');
         
         
 
