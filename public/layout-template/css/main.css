@@ -385,8 +385,8 @@ section {
   .navbar .get-a-quote:focus {
     background: var(--color-primary);
     padding: 8px 20px;
-    margin-left: 30px;
-    border-radius: 4px;
+    margin-left: 10px;
+    border-radius: 8px;
     color: #fff;
   }
 
@@ -1757,15 +1757,21 @@ section {
 # Hero Section
 --------------------------------------------------------------*/
 .hero {
+  position: absolute;
   width: 100%;
   min-height: 50vh;
   /* background-color: #3a7cba; */
   background-image: url("../img/hero-bg.png");
+  /* opacity: 100; */
+
   background-size: cover;
   background-position: center;
   position: relative;
-  padding: 120px 0 60px 0;
+  padding: 0px !important;
   color: rgba(255, 255, 255, 0.8);
+}
+.hero{
+  /* opacity: 0.6; */
 }
 
 .hero h2 {

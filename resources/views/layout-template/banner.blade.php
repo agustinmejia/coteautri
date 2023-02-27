@@ -1,5 +1,7 @@
 <section id="hero" class="hero d-flex align-items-center">
-    <div class="container">
+  <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4)">
+
+    <div class="container" style="padding: 120px 0 60px 0;">
       <div class="row gy-4 d-flex justify-content-between">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
           <h2 data-aos="fade-up" style="color:#002576">Your Lightning Fast Delivery Partner</h2>
@@ -57,6 +59,11 @@
       
 
     </div>
+  </div>
+  
+
+
+
     <style>
       #dataStyle {
           font-family: Arial, Helvetica, sans-serif;

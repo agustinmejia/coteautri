@@ -17,6 +17,11 @@ class TemplateController extends Controller
         return view('welcome');
     }
 
+    public function register()
+    {
+        return view('register');
+    }
+
     public function list($search = null){
         if($search)
         {

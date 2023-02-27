@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\TelephonyController;
@@ -15,11 +17,14 @@ use App\Http\Controllers\TelephonyController;
 |
 */
 Route::get('/', [TemplateController::class, 'index']);
+Route::get('register', [TemplateController::class, 'register']);
 Route::get('home/search/{search?}', [TemplateController::class, 'list']);
 
 Route::get('login', function () {
     return redirect('admin/login');
 })->name('login');
+
+Route::resource('resetpassword', ResetPasswordController::class);
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -36,6 +41,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'loggin'], function () {
     Route::post('telephony/importar', [TelephonyController::class, 'import'])->name('telephony.import');
 
 
+
+    Route::get('download/log/{cad?}', [AjaxController::class, 'downloadLg'])->name('download.log');
 
 
 

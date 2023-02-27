@@ -11,9 +11,10 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="{{url('/')}}" style="font-size: 20px"class="active">Inicio</a></li>
-          <li><a href="{{url('/')}}" style="font-size: 20px">Contact</a></li>
-          <li><a class="get-a-quote"  style="font-size: 20px" href="login">Iniciar Sesión</a></li>
+          <li><a href="{{url('/')}}" style="font-size: 15px"class="active">Inicio</a></li>
+          <li><a href="{{url('/')}}" style="font-size: 15px">Contact</a></li>
+          <li><a class="get-a-quote"  style="font-size: 15px" href="register  ">Registrase</a></li>
+          <li><a class="get-a-quote"  style="font-size: 15px" href="login">Iniciar Sesión</a></li>
         </ul>
       </nav><!-- .navbar -->
 

@@ -27,14 +27,26 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-block login-button">
+            <button type="submit" class="btn btn-block btn-success">
                 <span class="signingin hidden"><span class="voyager-refresh"></span> {{ __('voyager::login.loggingin') }}...</span>
                 <span class="signin">{{ __('voyager::generic.login') }}</span>
             </button>
 
             &nbsp;&nbsp;&nbsp;
-            <a type="button" href="{{url('/')}}" class="btn btn-dark">Inicio</a>
+            <br>
+            {{-- <a type="button" href="{{url('/')}}" class="btn btn-dark">Inicio</a> --}}
+            {{-- <li> y </li> --}}
+            <a id="idA_PWD_SwitchToFido" name="switchToFido" href="{{route('resetpassword.index')}}" data-bind="
+                        text: fidoLinkText,
+                        click: switchToFidoCredLink_onClick">Olvidatse Tu Contraseña..?
+            </a>
+
+           
+             
         </form>
+
+
+            
 
         <div style="clear:both"></div>
 
@@ -49,6 +61,9 @@
         @endif
 
     </div> <!-- .login-container -->
+
+
+
 @endsection
 
 @section('post_js')

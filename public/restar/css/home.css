@@ -1,0 +1,82 @@
+.contenido{
+    background: url('../images/batero.jpg') no-repeat center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  max-height: 600px;
+        
+}
+/*LOS MARGENES DEL CONTENEDOR SE CAMBIAN EN EL CORE DE BOOTSTRAP, EN LA PROPIEDAD "CONTAINER-FLUID"*/
+.homePage{
+}
+.diapo{
+    height: 600px;   
+}
+.diapo .textoDiapo{
+    color: #fff;
+    z-index: 100;
+    position: absolute;
+    bottom: 10px;
+}
+.textoDiapo > h3{
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    padding-bottom: 10px;
+}
+
+.btnIngresar{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.diapo > img {
+    resize: horizontal; 
+}
+
+.crearRegistro{
+    color: #888;
+    transition: color 0.5s;
+    -webkit-transition: color 0.5s;
+}
+
+.crearRegistro:hover{
+    color: #fff;
+    text-decoration: none;
+}
+/*++++++++++++++++CARACTERISTICAS++++++++++++++++++++++++*/
+    
+.caracter{
+ margin-top: 15px;
+margin-bottom: 30px;}  
+
+.caract-titl{
+    margin-bottom:30px;
+    margin-top: 15px;
+}
+
+.caract-model{
+    padding: 30px;
+}
+
+.img-caract{
+    border: 6px solid #fff;
+    box-shadow: 5px 5px 8px #999;
+   -webkit-box-shadow: 0px 0px 10px #999;
+   -moz-box-shadow: 5px 5px 8px #999;
+    width: 182px;
+    height: 182px;
+    margin-bottom: 30px;
+}
+
+/*+++++++++++++++++++++++++ footer +++++++++++++++++++++++++++++*/
+
+footer{
+    border-top: 1px solid #CCC;
+    padding: 20px;
+    padding-bottom: 40px;
+    color: #616161;
+}
+
+footer .entypo{
+    padding-right: 5px;
+}
