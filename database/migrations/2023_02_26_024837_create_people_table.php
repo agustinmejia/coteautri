@@ -23,6 +23,7 @@ class CreatePeopleTable extends Migration
             $table->date('birth_date')->nullable();
             $table->string('phone')->nullable();
             $table->string('type')->nullable();
+            
             $table->string('code', 250)->nullable();
 
             $table->smallInteger('status')->default(1);
