@@ -6,7 +6,7 @@
         @include('voyager::dimmers')
         <div class="analytics-container">
 
-            <a href="{{ asset('pdf/GUIA.pdf') }}" target="_blank" title="Aprobar prestamo" class="btn btn-info" onclick="download_log('Guia Telefonica')" data-toggle="modal" >
+            <a href="{{ asset('pdf/GUIA.pdf') }}" target="_blank" title="Descargar Guia" class="btn btn-info" onclick="download_log('Guia Telefonica')" data-toggle="modal" >
                 <i class="fa-solid fa-file-pdf"></i><span class="hidden-xs hidden-sm"><br> Gia Telefonica</span>
             </a>
         </div>
