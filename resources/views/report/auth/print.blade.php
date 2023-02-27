@@ -15,7 +15,7 @@
                     COTEAUTRI<br>
                 </h3>
                 <h4 style="margin-bottom: 0px; margin-top: 5px">
-                    REPORTE DETALLADO DE DESCARGAR
+                    REPORTE DE USUARIO AUTENTIFICADO
                     {{-- Stock Disponible {{date('d/m/Y', strtotime($start))}} Hasta {{date('d/m/Y', strtotime($finish))}} --}}
                 </h4>
                 <small style="margin-bottom: 0px; margin-top: 5px; font-size: 10px">
@@ -36,43 +36,39 @@
         <thead>
             <tr>
                 <th style="width:5px">N&deg;</th>
-                <th style="text-align: center">TIPO</th>
                 <th style="text-align: center">USUARIO</th>
                 <th style="text-align: center">EMAIL</th>
-                <th style="text-align: center">ROLE</th>
                 <th style="text-align: center">IP</th>
                 <th style="text-align: center">AGENTE</th>
-                <th style="text-align: center">URL</th>
                 <th style="text-align: center">FECHA</th>
             </tr>
         </thead>
         <tbody>
             @php
                 $count = 1;
+                $total = 0;
             @endphp
             @forelse ($data as $item)
                 <tr>
                     <td>{{ $count }}</td>
-                    <td style="text-align: left">{{ $item->type}}</td>
-                    <td style="text-align: left">{{ $item->user}}</td>
-                    <td style="text-align: left">{{ $item->email}}</td>
-                    <td style="text-align: left">{{ $item->role}}</td>
+                    <td style="text-align: left">{{ \App\Models\User::where('id',$item->id)->first()->name}}</td>
+                    <td style="text-align: left">{{ \App\Models\User::where('id',$item->id)->first()->email}}</td>
                     <td style="text-align: left">{{ $item->ip_address}}</td>
                     <td style="text-align: left">{{ $item->user_agent}}</td>
-                    <td style="text-align: left">{{ $item->url}}</td>
-                    <td style="text-align: center">{{date('d/m/Y H:m:s', strtotime($item->created_at))}}</td>
-                </tr>
+                    <td style="text-align: center">{{date('d/m/Y H:m:s', strtotime($item->login_at))}}</td>
+                                                                          
                     
+                </tr>
                 @php
-                    $count++;                               
+                    $count++;                           
                 @endphp
+                
             @empty
                 <tr style="text-align: center">
-                    <td colspan="9">No se encontraron registros.</td>
+                    <td colspan="6">No se encontraron registros.</td>
                 </tr>
             @endforelse
-        </tbody>       
-       
+        </tbody>
 
     </table>
 

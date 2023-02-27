@@ -20,6 +20,7 @@ class People extends Model
         'status',
         'observation',
         'deleted_at',
-        'user_id'
+        'user_id',
+        'code'
     ];
 }

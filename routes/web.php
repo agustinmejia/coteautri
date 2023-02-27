@@ -52,6 +52,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'loggin'], function () {
     Route::get('print/dowload', [ReportController::class, 'indexDownload'])->name('print.download');
     Route::post('print/dowload/list', [ReportController::class, 'listDownload'])->name('print-download.list');
 
+    Route::get('print/auth', [ReportController::class, 'indexAuth'])->name('print.auth');
+    Route::post('print/dowload/list', [ReportController::class, 'listAuth'])->name('print-auth.list');
+
 
 
 

@@ -14,7 +14,8 @@ class User extends \TCG\Voyager\Models\User
 {
     // use HasApiTokens, HasFactory, Notifiable;
 
-    use HasFactory, Notifiable, AuthenticationLogable;
+    // use HasFactory, Notifiable, AuthenticationLogable;
+    use Notifiable, AuthenticationLogable;
 
 
     /**

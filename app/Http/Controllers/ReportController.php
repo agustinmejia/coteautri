@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\DownloadLog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -46,4 +48,27 @@ class ReportController extends Controller
     {
         return view('report.auth.report');
     }
+
+    public function listAuth(Request $request)
+    {
+        // dump($data);
+        $data = DB::table('authentication_log as a')
+            ->whereDate('a.login_at', '>=', date('Y-m-d', strtotime($request->start)))
+            ->whereDate('a.login_at', '<=', date('Y-m-d', strtotime($request->finish)))
+            ->orderBy('id', 'ASC')
+            ->get();
+        // dump($data);
+
+
+
+        if($request->print){
+            $start = $request->start;
+            $finish = $request->finish;
+            return view('report.auth.print', compact('data', 'start', 'finish'));
+        }else{
+            return view('report.auth.list', compact('data'));
+        }
+        
+    }
+    
 }
