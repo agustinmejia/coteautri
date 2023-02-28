@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +57,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'loggin'], function () {
 
     Route::get('print/auth', [ReportController::class, 'indexAuth'])->name('print.auth');
     Route::post('print/auth/list', [ReportController::class, 'listAuth'])->name('print-auth.list');
+
+
+    Route::post('index/image', [Controller::class, 'indexImage'])->name('index.image');
+
+    Route::post('index/pdf', [Controller::class, 'indexpdf'])->name('index.pdf');
 
 
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Telephony;
 use Illuminate\Support\Facades\DB;
 use App\Imports\TelephonyImport;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TelephonyController extends Controller
@@ -29,10 +31,18 @@ class TelephonyController extends Controller
 
     public function import(Request $request)
     {
-        $file = $request->file('file');
-        Excel::import(new TelephonyImport, $file);
-        return redirect()->route('telephony.index')->with(['message' => 'Importado exitosamente.', 'alert-type' => 'success']);
+        DB::beginTransaction();
+        try {
+            Telephony::where('deleted_at', null)->update(['deletedUser_id'=>Auth::user()->id, 'status'=>0, 'deleted_at'=>Carbon::now()]);
+            $file = $request->file('file');
+            Excel::import(new TelephonyImport, $file);
+            DB::commit();
+            return redirect()->route('telephony.index')->with(['message' => 'Importado exitosamente.', 'alert-type' => 'success']);
 
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->route('telephony.index')->with(['message' => 'Error....', 'alert-type' => 'error']);
+        }
 
     }
 }

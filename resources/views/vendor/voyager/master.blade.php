@@ -9,6 +9,10 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('css/style/dataTable.css') }}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <!-- Favicon -->
     <?php $admin_favicon = Voyager::setting('admin.icon_image', ''); ?>
     @if($admin_favicon == '')
