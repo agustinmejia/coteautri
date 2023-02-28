@@ -18,6 +18,9 @@
             </div> --}}
     
             <div class="row">
+                <div class="col-lg-3" >
+                </div>
+
                 <div class="col-lg-6" >
 
                     
@@ -108,6 +111,8 @@
                         <div style="text-align: right" >
                             <button type="submit" class="btn btn-save-customer" id="btn-sumit" style="background-color: #08acf2;">Registrar</button>
                         </div>
+                </div>
+                <div class="col-lg-3" >
                 </div>
     
             </div>
