@@ -29,6 +29,11 @@ class User extends \TCG\Voyager\Models\User
         'password',
     ];
 
+    public function people()
+    {
+        return $this->hasMany(People::class, 'user_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

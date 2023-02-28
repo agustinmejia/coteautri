@@ -13,6 +13,7 @@
                 <thead>
                     <tr>
                         <th style="width:5px">N&deg;</th>
+                        <th style="text-align: center">CI</th>
                         <th style="text-align: center">USUARIO</th>
                         <th style="text-align: center">EMAIL</th>
                         <th style="text-align: center">IP</th>
@@ -26,10 +27,16 @@
                         $total = 0;
                     @endphp
                     @forelse ($data as $item)
+                            @php
+                                    $aux =  \App\Models\People::with(['user'])->where('user_id',$item->authenticatable_id)->first();
+                                    // dump($aux);
+                            @endphp
                         <tr>
                             <td>{{ $count }}</td>
-                            <td style="text-align: left">{{ \App\Models\User::where('id',$item->id)->first()->name}}</td>
-                            <td style="text-align: left">{{ \App\Models\User::where('id',$item->id)->first()->email}}</td>
+                            
+                            <td style="text-align: left">{{ $aux?$aux->ci:''}}</td>
+                            <td style="text-align: left">{{ $aux?$aux->first_name.' '.$aux->last_name:''}}</td>
+                            <td style="text-align: left">{{ \App\Models\User::where('id', $item->authenticatable_id)->first()->email}}</td>
                             <td style="text-align: left">{{ $item->ip_address}}</td>
                             <td style="text-align: left">{{ $item->user_agent}}</td>
                             <td style="text-align: center">{{date('d/m/Y H:m:s', strtotime($item->login_at))}}</td>
@@ -42,7 +49,7 @@
                         
                     @empty
                         <tr style="text-align: center">
-                            <td colspan="6">No se encontraron registros.</td>
+                            <td colspan="7">No se encontraron registros.</td>
                         </tr>
                     @endforelse
                 </tbody>

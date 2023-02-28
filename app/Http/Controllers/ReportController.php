@@ -13,6 +13,13 @@ class ReportController extends Controller
 {
     public function indexDownload()
     {
+        $data = DownloadLog::with(['user.people'])
+            // ->whereRaw($query)
+            // ->whereDate('created_at', '>=', date('Y-m-d', strtotime($request->start)))
+            // ->whereDate('created_at', '<=', date('Y-m-d', strtotime($request->finish)))
+            ->orderBy('id', 'ASC')
+            ->get();
+            // return $data;
         return view('report.download.report');
     }
     public function listDownload(Request $request)
@@ -24,7 +31,8 @@ class ReportController extends Controller
         {
             $query = 1;
         }
-        $data = DownloadLog::whereRaw($query)
+        $data = DownloadLog::with(['user'])
+            ->whereRaw($query)
             ->whereDate('created_at', '>=', date('Y-m-d', strtotime($request->start)))
             ->whereDate('created_at', '<=', date('Y-m-d', strtotime($request->finish)))
             ->orderBy('id', 'ASC')
@@ -51,7 +59,7 @@ class ReportController extends Controller
 
     public function listAuth(Request $request)
     {
-        // dump($data);
+        // dump($request);
         $data = DB::table('authentication_log as a')
             ->whereDate('a.login_at', '>=', date('Y-m-d', strtotime($request->start)))
             ->whereDate('a.login_at', '<=', date('Y-m-d', strtotime($request->finish)))

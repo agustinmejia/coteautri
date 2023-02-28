@@ -24,11 +24,11 @@
                                 
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="date" name="start" class="form-control">
+                                        <input type="date" name="start" class="form-control" required>
                                         <small>Inicio</small>
                                     </div>
                                     <div class="form-line">
-                                        <input type="date" name="finish" class="form-control">
+                                        <input type="date" name="finish" class="form-control" required>
                                         <small>Fin</small>
                                     </div>
                                 </div>

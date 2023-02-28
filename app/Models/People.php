@@ -22,5 +22,9 @@ class People extends Model
         'deleted_at',
         'user_id',
         'code'
-    ];
+    ]; 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

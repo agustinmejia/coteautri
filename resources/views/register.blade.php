@@ -5,7 +5,7 @@
 <!-- End Hero -->
 
 @section('main')
-<form  action="{{route('coteautri.store')}}" class="was-validated" method="POST">
+<form  action="{{route('coteautri.store')}}" class="was-validateds" method="POST">
     @csrf 
 <section id="hero" class="hero d-flex align-items-center">    
     {{-- <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4)"> --}}

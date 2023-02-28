@@ -14,9 +14,10 @@
                     <tr>
                         <th style="width:5px">N&deg;</th>
                         <th style="text-align: center">TIPO</th>
+                        <th style="text-align: center">CI</th>
                         <th style="text-align: center">USUARIO</th>
                         <th style="text-align: center">EMAIL</th>
-                        <th style="text-align: center">ROLE</th>
+                        {{-- <th style="text-align: center">ROLE</th> --}}
                         <th style="text-align: center">IP</th>
                         <th style="text-align: center">AGENTE</th>
                         <th style="text-align: center">URL</th>
@@ -30,11 +31,15 @@
                     @endphp
                     @forelse ($data as $item)
                         <tr>
+                            @php
+                                $aux =  \App\Models\People::where('user_id',$item->user_id)->first();
+                            @endphp
                             <td>{{ $count }}</td>
                             <td style="text-align: right">{{ $item->type}}</td>
-                            <td style="text-align: right">{{ $item->user}}</td>
+                            <td style="text-align: right">{{ $aux?$aux->ci:''}}</td>
+                            <td style="text-align: right">{{ $aux?$aux->first_name.' '.$aux->last_name:''}}</td>
                             <td style="text-align: right">{{ $item->email}}</td>
-                            <td style="text-align: right">{{ $item->role}}</td>
+                            {{-- <td style="text-align: right">{{ $item->role}}</td> --}}
                             <td style="text-align: right">{{ $item->ip_address}}</td>
                             <td style="text-align: right">{{ $item->user_agent}}</td>
                             <td style="text-align: right">{{ $item->url}}</td>
@@ -48,7 +53,7 @@
                         
                     @empty
                         <tr style="text-align: center">
-                            <td colspan="8">No se encontraron registros.</td>
+                            <td colspan="9">No se encontraron registros.</td>
                         </tr>
                     @endforelse
                 </tbody>

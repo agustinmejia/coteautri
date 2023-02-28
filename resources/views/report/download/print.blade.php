@@ -37,9 +37,9 @@
             <tr>
                 <th style="width:5px">N&deg;</th>
                 <th style="text-align: center">TIPO</th>
+                <th style="text-align: center">CI</th>
                 <th style="text-align: center">USUARIO</th>
                 <th style="text-align: center">EMAIL</th>
-                <th style="text-align: center">ROLE</th>
                 <th style="text-align: center">IP</th>
                 <th style="text-align: center">AGENTE</th>
                 <th style="text-align: center">URL</th>
@@ -52,15 +52,19 @@
             @endphp
             @forelse ($data as $item)
                 <tr>
-                    <td>{{ $count }}</td>
-                    <td style="text-align: left">{{ $item->type}}</td>
-                    <td style="text-align: left">{{ $item->user}}</td>
-                    <td style="text-align: left">{{ $item->email}}</td>
-                    <td style="text-align: left">{{ $item->role}}</td>
-                    <td style="text-align: left">{{ $item->ip_address}}</td>
-                    <td style="text-align: left">{{ $item->user_agent}}</td>
-                    <td style="text-align: left">{{ $item->url}}</td>
-                    <td style="text-align: center">{{date('d/m/Y H:m:s', strtotime($item->created_at))}}</td>
+                    @php
+                                $aux =  \App\Models\People::where('user_id',$item->user_id)->first();
+                    @endphp
+                            <td>{{ $count }}</td>
+                            <td style="text-align: left">{{ $item->type}}</td>
+                            <td style="text-align: left">{{ $aux?$aux->ci:''}}</td>
+                            <td style="text-align: left">{{ $aux?$aux->first_name.' '.$aux->last_name:''}}</td>
+                            <td style="text-align: left">{{ $item->email}}</td>
+                            {{-- <td style="text-align: left">{{ $item->role}}</td> --}}
+                            <td style="text-align: left">{{ $item->ip_address}}</td>
+                            <td style="text-align: left">{{ $item->user_agent}}</td>
+                            <td style="text-align: left">{{ $item->url}}</td>
+                            <td style="text-align: center">{{date('d/m/Y H:m:s', strtotime($item->created_at))}}</td>
                 </tr>
                     
                 @php
