@@ -1761,7 +1761,7 @@ section {
   width: 100%;
   min-height: 50vh;
   /* background-color: #3a7cba; */
-  /* background-image: url("../img/hero-bg.png"); */
+  background-image: url("../img/hero-bg.jpg");
   /* opacity: 100; */
 
   background-size: cover;
