@@ -68,7 +68,7 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <span ><b style="color: black">Codigo</b></span>
-                                <input type="text" name="code" class="form-control" id="ci" placeholder="Carnet Identidad" value="{{ old('ci') }}" required autocomplete="nope">
+                                <input type="text" name="code" class="form-control" id="ci" placeholder="Codigo" value="{{ old('ci') }}" required autocomplete="nope">
                                 @error('ci')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
