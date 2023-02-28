@@ -4,8 +4,8 @@
             @if ($op==1)
                 <thead>
                     <tr>
-                        <th>Telefono</th>
-                        <th>Nombre completo</th>    
+                        <th style="text-align: center">TELEFONO</th>
+                        <th style="text-align: center">NOMBRE COMPLETO</th>    
                     </tr>
                 </thead>
                 <tbody style='background-color:#f1efef;'>
@@ -15,7 +15,7 @@
                     @forelse ($data as $item)
                         <tr>
                             {{-- <td>{{ $i }}</td> --}}
-                            <td>{{ $item->phone }}</td>
+                            <td style="text-align: center">{{ $item->phone }}</td>
                             <td>{{ $item->full_name}}</td>
                         </tr>
                         @php
@@ -30,9 +30,9 @@
             @else
                 <thead>
                     <tr>
-                        <th>Nombre completo</th>    
+                        <th style="text-align: center">NOMBRE COMPLETO</th>    
 
-                        <th>Telefono</th>
+                        <th style="text-align: center">TELEFONO</th>
                     </tr>
                 </thead>
                 <tbody style='background-color:#f1efef;'>
@@ -44,7 +44,7 @@
                             {{-- <td>{{ $i }}</td> --}}
                             <td>{{ $item->full_name}}</td>
 
-                            <td>{{ $item->phone }}</td>
+                            <td style="text-align: center">{{ $item->phone }}</td>
                         </tr>
                         @php
                             $i++;
