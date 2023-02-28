@@ -17,13 +17,15 @@ use App\Http\Controllers\TelephonyController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [TemplateController::class, 'index']);
 Route::get('register', [TemplateController::class, 'register']);
 Route::get('home/search/{search?}', [TemplateController::class, 'list']);
 
 Route::get('login', function () {
     return redirect('admin/login');
 })->name('login');
+
+Route::get('/', [TemplateController::class, 'index']);
+
 
 Route::resource('resetpassword', ResetPasswordController::class);
 
