@@ -8,7 +8,8 @@
 <form  action="{{route('coteautri.store')}}" class="was-validated" method="POST">
     @csrf 
 <section id="hero" class="hero d-flex align-items-center">    
-    <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4)">
+    {{-- <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4)"> --}}
+    <div class="dark-mask" style="width: 100%; position: relative;background-color: #EDEDED">
 
         <div class="container" style="padding: 120px 0 60px 0;">
             {{-- <div class="section-title">
@@ -22,7 +23,7 @@
                     
                         <div class="row">
                             <div class="col-md-6 form-group mt-3 mt-md-0">
-                                {{-- <span ><b c>Tipo</b></span> --}}
+                                <span ><b style="color: black">Tipo</b></span>
                                 <select name="type" id="type" class="form-control select2" required>
                                     <option value="" disabled selected>--Seleccione una opción--</option>
                                     <option value="Usuario" {{ old('type')=='Usuario'?'selected':'' }}>Usuario</option>
@@ -31,7 +32,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6 form-group">
-                                {{-- <span ><b style="color: black">Telefono</b></span> --}}
+                                <span ><b style="color: black">Telefono</b></span>
                                 <input type="text" id="phone" name="phone" class="form-control"  placeholder="Telefono" onkeypress='return validaNumericos(event)' value="{{ old('phone') }}" required>
                                 @error('phone')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -41,14 +42,14 @@
                         <br>
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                {{-- <span ><b style="color: black">Nombre</b></span> --}}
+                                <span ><b style="color: black">Nombre</b></span>
                                 <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Nombre" value="{{ old('first_name') }}" required autocomplete="nope">
                                 @error('first_name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6 form-group mt-3 mt-md-0">
-                                {{-- <span ><b style="color: black">Apellido</b></span> --}}
+                                <span ><b style="color: black">Apellido</b></span>
                                 <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Apellido" value="{{ old('last_name') }}" required autocomplete="nope">
                                 @error('last_name')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -59,7 +60,7 @@
                         <div class="row">
                                                     
                             <div class="col-md-6 form-group">
-                                {{-- <span ><b style="color: black">Carnet Identidad</b></span> --}}
+                                <span ><b style="color: black">Carnet Identidad</b></span>
                                 <input type="text" name="ci" onkeypress='return validaNumericos(event)' class="form-control" id="ci" placeholder="Carnet Identidad" value="{{ old('ci') }}" required autocomplete="nope">
                                 @error('ci')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -72,7 +73,7 @@
                         </div> --}}
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                {{-- <span ><b style="color: black">Email</b></span> --}}
+                                <span ><b style="color: black">Email</b></span>
                                 <input type="email" name="email" class="form-control" id="email" placeholder="Email" required autocomplete="nope">
                                 @error('email')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -80,7 +81,7 @@
                             </div>
                             
                             <div class="col-md-6 form-group mt-3 mt-md-0">
-                                {{-- <span ><b style="color: black">Contraseña</b></span> --}}
+                                <span ><b style="color: black">Contraseña</b></span>
                                 <div class="form-group">
                                     <div class="input-group">                                  
                                       <input type="password" class="form-control" name="password" id="password" id="email" placeholder="*********" required>                                 
@@ -107,8 +108,6 @@
         </div>
 
     </div>
-
-     
 
   </section>
 </form>   

@@ -383,7 +383,7 @@ section {
 
   .navbar .get-a-quote,
   .navbar .get-a-quote:focus {
-    background: var(--color-primary);
+    background: #08ACF2;
     padding: 8px 20px;
     margin-left: 10px;
     border-radius: 8px;
@@ -528,7 +528,7 @@ section {
 
   .navbar .get-a-quote,
   .navbar .get-a-quote:focus {
-    background: var(--color-primary);
+    background: #08ACF2;
     padding: 8px 20px;
     border-radius: 4px;
     margin: 15px;
@@ -1761,7 +1761,7 @@ section {
   width: 100%;
   min-height: 50vh;
   /* background-color: #3a7cba; */
-  background-image: url("../img/hero-bg.png");
+  /* background-image: url("../img/hero-bg.png"); */
   /* opacity: 100; */
 
   background-size: cover;
