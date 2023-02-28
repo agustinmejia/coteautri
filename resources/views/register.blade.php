@@ -99,7 +99,7 @@
                         <br>
     
                         <div style="text-align: right" >
-                            <button type="submit" class="btn btn-save-customer" id="btn-sumit" style="background-color: #ff9d00;">Registrar</button>
+                            <button type="submit" class="btn btn-save-customer" id="btn-sumit" style="background-color: #08acf2;">Registrar</button>
                         </div>
                 </div>
     
