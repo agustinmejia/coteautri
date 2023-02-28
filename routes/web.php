@@ -22,7 +22,7 @@ Route::get('home/search/{search?}', [TemplateController::class, 'list']);
 
 Route::get('login', function () {
     return redirect('admin/login');
-})->name('login');
+});
 
 Route::get('/', [TemplateController::class, 'index']);
 
