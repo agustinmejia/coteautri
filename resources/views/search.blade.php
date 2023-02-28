@@ -1,31 +1,61 @@
 <div class="col-md-12">
     <div class="table-responsive">
         <table id="dataStyle" class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Telefono</th>
-                    <th>Nombre completo</th>    
-                </tr>
-            </thead>
-            <tbody style='background-color:#f1efef;'>
-                @php
-                    $i =1;
-                @endphp
-                @forelse ($data as $item)
+            @if ($op==1)
+                <thead>
                     <tr>
-                        {{-- <td>{{ $i }}</td> --}}
-                        <td>{{ $item->phone }}</td>
-                        <td>{{ $item->full_name}}</td>
+                        <th>Telefono</th>
+                        <th>Nombre completo</th>    
                     </tr>
+                </thead>
+                <tbody style='background-color:#f1efef;'>
                     @php
-                        $i++;
+                        $i =1;
                     @endphp
-                @empty
-                    <tr style="text-align: center">
-                        <td colspan="2" class="dataTables_empty">No hay datos disponibles</td>
+                    @forelse ($data as $item)
+                        <tr>
+                            {{-- <td>{{ $i }}</td> --}}
+                            <td>{{ $item->phone }}</td>
+                            <td>{{ $item->full_name}}</td>
+                        </tr>
+                        @php
+                            $i++;
+                        @endphp
+                    @empty
+                        <tr style="text-align: center">
+                            <td colspan="2" class="dataTables_empty">No hay datos disponibles</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            @else
+                <thead>
+                    <tr>
+                        <th>Nombre completo</th>    
+
+                        <th>Telefono</th>
                     </tr>
-                @endforelse
-            </tbody>
+                </thead>
+                <tbody style='background-color:#f1efef;'>
+                    @php
+                        $i =1;
+                    @endphp
+                    @forelse ($data as $item)
+                        <tr>
+                            {{-- <td>{{ $i }}</td> --}}
+                            <td>{{ $item->full_name}}</td>
+
+                            <td>{{ $item->phone }}</td>
+                        </tr>
+                        @php
+                            $i++;
+                        @endphp
+                    @empty
+                        <tr style="text-align: center">
+                            <td colspan="2" class="dataTables_empty">No hay datos disponibles</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            @endif
         </table>
     </div>
 </div>

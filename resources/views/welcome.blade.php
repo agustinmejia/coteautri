@@ -16,7 +16,6 @@
     <script>
         var countPage = 10, order = 'id', typeOrder = 'desc';
         $(document).ready(() => {
-            list();
             
             $('#input-search').on('keyup', function(e){
                 if(e.keyCode == 13) {
@@ -31,6 +30,10 @@
             });
         });
 
+        function buscar()
+        {
+            list();
+        }
         function list(page = 1){
             // $('#div-results').loading({message: 'Cargando...'});
             var loader = '<div class="col-md-12 bg"><div class="loader" id="loader-3"></div></div>'

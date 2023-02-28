@@ -20,7 +20,7 @@
               <div id="field_wrapper">
                 <div class="my-class-form-control-group">
                   <input type="text" id="input-search" class="form-control" placeholder="Buscar..." style="width:250;height:50px"> &nbsp;
-                  <a class="btn btn-info" id="add_button" style="width: 50px; height: 46px; font-size: 28px; justify-content: center;"><i class="fa-solid fa-magnifying-glass"></i></a>
+                  <a class="btn btn-info" onclick="buscar()" id="add_button" style="width: 50px; height: 46px; font-size: 28px; justify-content: center;"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </div>
                </div>
             </div>
@@ -44,12 +44,12 @@
 
 
 
-    <style>
+    <style> 
 
-.my-class-form-control-group{
-  display:flex;
-  align-items:Center;
-}
+      .my-class-form-control-group{
+        display:flex;
+        align-items:Center;
+      }
 
       
 
@@ -73,7 +73,7 @@
           padding-top: 12px;
           padding-bottom: 12px;
           /* text-align: left; */
-          background-color: #22a7f0;
+          background-color: #08acf2;
           color: white;
       }
     </style>

@@ -25,6 +25,11 @@ class TemplateController extends Controller
     public function list($search = null){
         if($search)
         {
+            $op = 0;
+            if(is_numeric($search))
+            {
+                $op = 1;
+            }
             $paginate = 5;
             // dump($paginate);
             $data = Telephony::where(function($query) use ($search){
@@ -34,7 +39,7 @@ class TemplateController extends Controller
                         ->where('deleted_at', NULL)->orderBy('id', 'DESC')->paginate($paginate);
                         // $data = 1;
                         // dd($data->links());
-            return view('search', compact('data'));
+            return view('search', compact('data', 'op'));
         }
 
     }
