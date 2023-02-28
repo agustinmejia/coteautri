@@ -13,7 +13,7 @@
         <ul>
           {{-- <li><a href="{{url('/')}}" style="font-size: 20px; color:black"class="active"></a></li> --}}
           <li><a class="get-a-quote"  style="font-size: 15px" href="{{url('/')}}">Buscar</a></li>
-          <li><a class="get-a-quote"  style="font-size: 15px" href="register  ">Registrase</a></li>
+          <li><a class="get-a-quote"  style="font-size: 15px" href="register  ">Registrarse</a></li>
           <li><a class="get-a-quote"  style="font-size: 15px" href="login">Iniciar Sesión</a></li>
         </ul>
       </nav><!-- .navbar -->
