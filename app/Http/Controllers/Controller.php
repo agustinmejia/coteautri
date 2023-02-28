@@ -94,4 +94,10 @@ class Controller extends BaseController
             return redirect()->route('voyager.dashboard')->with(['message' => 'Error....', 'alert-type' => 'error']);
         }    
     }
+    public function deletepdf($id)
+    {
+        // return $id;
+        IndexPdf::where('id', $id)->update(['status'=>0]);
+        return redirect()->route('voyager.dashboard')->with(['message' => 'Eliminado exitosamente.', 'alert-type' => 'success']);
+    }
 }

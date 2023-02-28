@@ -62,6 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'loggin'], function () {
     Route::post('index/image', [Controller::class, 'indexImage'])->name('index.image');
 
     Route::post('index/pdf', [Controller::class, 'indexpdf'])->name('index.pdf');
+    Route::get('index/pdf/delete/{id?}', [Controller::class, 'deletepdf'])->name('delete.pdf');
 
 
 

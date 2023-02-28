@@ -17,7 +17,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <small>Nombre</small>
-                                <input type="text" name="name" class="form-control">
+                                <input type="text" name="name" maxlength="15" class="form-control">
                             </div>
                             
                         <div class="row">
@@ -39,8 +39,11 @@
                 @endphp
                 @foreach ($pdf as $item)
                     <div class="col-md-4" >
-                        <a href="{{asset('storage/'.$item->file)}}" target="_blank" title="Descargar Guia" class="btn" onclick="download_log('Guia Telefonica')" style="margin-top: 1em; border-radius: 20px; height:300px; width: 250px; background-color: #08acf2; color:#ffffff; font-size: 30px" data-toggle="modal" >
-                            <i class="fa-solid fa-file-pdf" style="color: #ffffff; font-size: 4em;"></i><span class="hidden-xs hidden-sm"><br> {{$item->name}}</span>
+                        <a href="{{asset('storage/'.$item->file)}}" target="_blank" title="Descargar" class="btn" onclick="download_log('{{$item->name}}')" style=" margin-top: 1em; border-radius: 20px; height:300px; width: 250px; background-color: #08acf2; color:#ffffff; " data-toggle="modal" >
+                            <i class="fa-solid fa-file-pdf" style="color: #ffffff; font-size: 4em;"></i> <br> <p>{{$item->name}}</p>
+                        </a>
+                        <a href="{{route('delete.pdf', ['id'=>$item->id])}}" class="btn btn-danger" data-toggle="modal" >
+                            <i class="fa-solid fa-trash"></i><span class="hidden-xs hidden-sm"><br> Eliminar</span>
                         </a>
                     </div>
                 @endforeach
@@ -48,6 +51,8 @@
 
             </div>
                 @if (auth()->user()->hasRole('admin'))
+                <br><br>
+                <hr>
                     <form name="form_search" id="form-search" action="{{ route('index.image') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-4 text-right" style="margin-top: 10px">
@@ -55,13 +60,6 @@
                             <input type="file" accept="image/jpeg,image/jpg,image/png" name="file" id="file" class="form-control text imageLength">
 
                             <button type="submit" class="btn btn-success">Cambiar</button>    
-                        </div>
-                    </form>
-                    <form name="form_search" id="form-search" action="{{ route('index.image') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="col-md-4 text-right" style="margin-top: 10px">
-                           
-                            <button type="submit" class="btn btn-success">Borrar</button>    
                         </div>
                     </form>
                 @endif
