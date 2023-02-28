@@ -112,7 +112,7 @@ class SettingsTableSeeder extends Seeder
                 'id' => 9,
                 'key' => 'admin.icon_image',
                 'display_name' => 'Admin Icon Image',
-                'value' => '',
+                'value' => 'settings/February2023/OvhAYsudAemQkaCpInb5.png',
                 'details' => '',
                 'type' => 'image',
                 'order' => 4,
