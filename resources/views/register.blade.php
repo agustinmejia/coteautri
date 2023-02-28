@@ -8,7 +8,7 @@
 <form  action="{{route('coteautri.store')}}" class="was-validateds" method="POST">
     @csrf 
 <section id="hero" class="hero d-flex align-items-center">    
-    <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4)">
+    <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4); height: 100vh">
     {{-- <div class="dark-mask" style="width: 100%; position: relative;background-color: #EDEDED"> --}}
 
         <div class="container" style="padding: 120px 0 60px 0;">
