@@ -19,6 +19,10 @@ class TemplateController extends Controller
 
     public function register()
     {
+        if(Auth::user())
+        {
+            return redirect('login');
+        }
         return view('register');
     }
 
