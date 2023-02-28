@@ -66,7 +66,7 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-md-6 form-group">
+                            <div class="col-md-6 form-group" id="codes" style="display: none">
                                 <span ><b style="color: black">Codigo</b></span>
                                 <input type="text" name="code" class="form-control" id="ci" placeholder="Codigo" value="{{ old('ci') }}" required autocomplete="nope">
                                 @error('ci')
@@ -120,6 +120,7 @@
 </form>   
 
 
+<script src="{{asset('js/jquery.min.js')}}"></script>
 
     <script>        
         function mostrarContrasena(){
@@ -134,6 +135,27 @@
                     $('#boton').html('<span class="fa fa-eye"></span>');
                     $('#password').prop('type', 'password');
                 }
+        }
+    </script>
+
+    <script>
+        $(function()
+        {
+            $('#type').on('change', input_code);
+        }); 
+        function input_code()
+        {      
+            var aux =  $(this).val();
+            // alert(1)
+            var x = document.getElementById("codes");
+            if(aux == 'Otros')
+            {
+                x.style.display = "none";
+            }
+            else
+            {
+                x.style.display = "block";
+            }
         }
     </script>
 
