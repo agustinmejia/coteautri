@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="page-content">
-        @include('voyager::alerts')
-        @include('voyager::dimmers')
-        <div class="analytics-container">
+        {{-- @include('voyager::alerts')
+        @include('voyager::dimmers') --}}
+        {{-- <div class="analytics-container"> --}}
             <div class="row" style="text-align: center">
                 <div class="col-md-4" >
                     <a href="{{ asset('pdf/GUIA.pdf') }}" target="_blank" title="Descargar Guia" class="btn" onclick="download_log('Guia Telefonica')" style="margin-top: 1em; border-radius: 20px; height:300px; width: 250px; background-color: #08acf2; color:#ffffff; font-size: 30px" data-toggle="modal" >
@@ -26,7 +26,7 @@
 
             
             
-        </div>
+        {{-- </div> --}}
     </div>
 @stop
 
