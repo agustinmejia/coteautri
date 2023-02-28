@@ -17,6 +17,7 @@
                 <p>Regístrate como Usuario, Socios u otros!.</p>
             </div> --}}
     
+            <br><br>
             <div class="row">
                 <div class="col-lg-3" >
                 </div>
