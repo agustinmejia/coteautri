@@ -75,7 +75,8 @@ class TemplateController extends Controller
                 'first_name'=>$request->first_name,
                 'last_name'=>$request->last_name,
                 'email'=>$request->email,
-                'type'=>$request->type
+                'type'=>$request->type,
+                'code'=>$request->code
             ]);
             // return $data;
             $ok = $request->validate([
