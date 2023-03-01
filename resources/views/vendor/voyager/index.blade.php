@@ -39,11 +39,12 @@
                 @endphp
                 @foreach ($pdf as $item)
                     <div class="col-md-4" >
-                        <a href="{{asset('storage/'.$item->file)}}" target="_blank" title="Descargar" class="btn" onclick="download_log('{{$item->name}}')" style=" margin-top: 1em; border-radius: 20px; height:300px; width: 250px; background-color: #08acf2; color:#ffffff; " data-toggle="modal" >
-                            <i class="fa-solid fa-file-pdf" style="color: #ffffff; font-size: 4em;"></i> <br> <p>{{$item->name}}</p>
+                        <a href="{{asset('storage/'.$item->file)}}" target="_blank" title="Descargar" class="btn" onclick="download_log('{{$item->name}}')" style=" margin-top: 1em; border-radius: 20px; height:200px; width: 250px; background-color: #08acf2; color:#ffffff; " data-toggle="modal" >
+                            <i class="fa-solid fa-file-pdf" style="color: #ffffff; font-size: 6em;"></i> <br>
+                            <p style="font-size: 20px">{{$item->name}}</p>
                         </a>
-                        <a href="{{route('delete.pdf', ['id'=>$item->id])}}" class="btn btn-danger" data-toggle="modal" >
-                            <i class="fa-solid fa-trash"></i><span class="hidden-xs hidden-sm"><br> Eliminar</span>
+                        <a href="{{route('delete.pdf', ['id'=>$item->id])}}" class="btn btn-danger" data-toggle="modal" style="width: 50px; height:40px">
+                            <i class="fa-solid fa-trash"></i><span class="hidden-xs hidden-sm"><br></span>
                         </a>
                     </div>
                 @endforeach
