@@ -6,6 +6,7 @@ use App\Imports\DebtorImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Debtor;
+use App\Models\People;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -14,7 +15,17 @@ class DebtorController extends Controller
 {
     public function index()
     {
-        return view('debtor.browse');
+        if(!Auth::user()->hasRole('admin') && Auth::user()->hasRole('user'))
+        {
+            $user = People::where('user_id', Auth::user()->id)->first();
+            $debt = Debtor::where('code', $user->code)->where('deleted_at', null)->get();
+
+            return view('debtor.browse', compact('user', 'debt'));
+        }
+        if(Auth::user()->hasRole('admin'))
+        {
+            return view('debtor.browse');
+        }
     }
 
 

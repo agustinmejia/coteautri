@@ -43,9 +43,11 @@
                             <i class="fa-solid fa-file-pdf" style="color: #ffffff; font-size: 6em;"></i> <br>
                             <p style="font-size: 20px">{{$item->name}}</p>
                         </a>
-                        <a href="{{route('delete.pdf', ['id'=>$item->id])}}" class="btn btn-danger" data-toggle="modal" style="width: 50px; height:40px">
-                            <i class="fa-solid fa-trash"></i><span class="hidden-xs hidden-sm"><br></span>
-                        </a>
+                        @if(auth()->user()->hasRole('admin'))
+                            <a href="{{route('delete.pdf', ['id'=>$item->id])}}" class="btn btn-danger" data-toggle="modal" style="width: 50px; height:40px">
+                                <i class="fa-solid fa-trash"></i><span class="hidden-xs hidden-sm"><br></span>
+                            </a>
+                        @endif
                     </div>
                 @endforeach
                 

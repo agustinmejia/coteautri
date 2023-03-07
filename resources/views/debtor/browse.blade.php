@@ -2,7 +2,7 @@
 
 @section('page_title', 'Viendo Telefonia')
 
-@if (auth()->user()->hasPermission('browse_telephony'))
+@if (auth()->user()->hasPermission('browse_debtor'))
 
 
 @section('page_header')
@@ -16,16 +16,16 @@
                                 <i class="fa-solid fa-file"></i> Consultas de Deudas
                             </h1>
                         </div>
-                        <form name="form_search" id="form-search" action="{{ route('debtor.import') }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="col-md-4 text-right" style="margin-top: 10px">
-                                <input type="file" name="file" class=form-control required>
-                                <button type="submit" class="btn btn-success">Importar</button>
+                        @if(auth()->user()->hasRole('admin'))
+                            <form name="form_search" id="form-search" action="{{ route('debtor.import') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="col-md-4 text-right" style="margin-top: 10px">
+                                    <input type="file" name="file" class=form-control required>
+                                    <button type="submit" class="btn btn-success">Importar</button>
 
-                            </div>
-
-                        
-                        </form>
+                                </div>                        
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -40,22 +40,105 @@
             <div class="col-md-12">
                 <div class="panel panel-bordered">
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <div class="dataTables_length" id="dataTable_length">
-                                    <label>Mostrar <select id="select-paginate" class="form-control input-sm">
-                                        <option value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                    </select> registros</label>
+                        @if(!auth()->user()->hasRole('admin') && auth()->user()->hasRole('user'))
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="panel-heading" style="border-bottom:0;">
+                                        <h3 id="h4" class="panel-title">CI</h3>
+                                    </div>
+                                    <div class="panel-body" style="padding-top:0;">
+                                        <small>{{$user->ci}}</small>
+                                    </div>
+                                    <hr style="margin:0;">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel-heading" style="border-bottom:0;">
+                                        <h3 id="h4" class="panel-title">Nombre</h3>
+                                    </div>
+                                    <div class="panel-body" style="padding-top:0;">
+                                        <small>{{$user->first_name}}</small>
+                                    </div>
+                                    <hr style="margin:0;">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel-heading" style="border-bottom:0;">
+                                        <h3 id="h4" class="panel-title">Apellido</h3>
+                                    </div>
+                                    <div class="panel-body" style="padding-top:0;">
+                                        <small>{{$user->last_name}}</small>
+                                    </div>
+                                    <hr style="margin:0;">
+                                </div>                               
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="panel-heading" style="border-bottom:0;">
+                                        <h3 id="h4" class="panel-title">Codigo Cliente</h3>
+                                    </div>
+                                    <div class="panel-body" style="padding-top:0;">
+                                        @if ($user->code)
+                                            <small>{{$user->code}}</small>
+                                        @else
+                                            <label class="label label-danger">Porfavor solicite su codigo de cliente en las oficinas de Coteautri </label>                                                                        
+                                        @endif
+                                    </div>
+                                    <hr style="margin:0;">
+                                </div>                             
+                            </div>
+
+                            @if ($debt)
+                                <div class="table-responsive">
+                                    <table id="dataStyle" class="table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">Codigo</th>
+                                                <th style="text-align: center">Servicio ID</th>    
+                                                <th style="text-align: center">Detalle</th>    
+                                                <th style="text-align: center">Monto</th>    
+                                                <th style="text-align: center">Mes</th>    
+                                                <th style="text-align: center">Año</th>      
+                                                <th style="text-align: center">Estado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($debt as $item)
+                                                <tr>
+                                                    <td>{{ $item->code }}</td>
+                                                    <td style="text-align: center">{{ $item->service_id}}</td>
+                                                    <td>{{ $item->details}}</td>
+                                                    <td style="text-align: right">{{ $item->amount}}</td>
+                                                    <td style="text-align: center">{{ $item->month}}</td>
+                                                    <td style="text-align: center">{{ $item->year}}</td>
+                                                    <td style="text-align: center">{{ $item->status}}</td>                        
+                                                </tr>
+                                            @empty
+                                                <tr style="text-align: center">
+                                                    <td colspan="7" class="dataTables_empty">No hay datos disponibles en la tabla</td>
+                                                </tr>
+                                            @endforelse                                                                             
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+                        @endif
+                        @if(auth()->user()->hasRole('admin'))
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <div class="dataTables_length" id="dataTable_length">
+                                        <label>Mostrar <select id="select-paginate" class="form-control input-sm">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> registros</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" id="input-search" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-sm-2">
-                                <input type="text" id="input-search" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row" id="div-results" style="min-height: 120px"></div>
+                            <div class="row" id="div-results" style="min-height: 120px"></div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -70,6 +153,10 @@
 
 @section('css')
 <style>
+    small{font-size: 12px;
+        color: rgb(12, 12, 12);
+        font-weight: bold;
+    }
 
     /* LOADER 3 */
     

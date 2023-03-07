@@ -20,12 +20,12 @@
                 @forelse ($data as $item)
                     <tr>
                         <td>{{ $item->code }}</td>
-                        <td>{{ $item->service_id}}</td>
+                        <td style="text-align: center">{{ $item->service_id}}</td>
                         <td>{{ $item->details}}</td>
                         <td style="text-align: right">{{ $item->amount}}</td>
-                        <td>{{ $item->month}}</td>
-                        <td>{{ $item->year}}</td>
-                        <td>{{ $item->status}}</td>                        
+                        <td style="text-align: center">{{ $item->month}}</td>
+                        <td style="text-align: center">{{ $item->year}}</td>
+                        <td style="text-align: center">{{ $item->status}}</td>                        
                     </tr>
                     @php
                         $i++;

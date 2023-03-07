@@ -50,6 +50,17 @@ class PermissionsTableSeeder extends Seeder
 
         Permission::generateFor('people');
         Permission::generateFor('telephony');
+
+        $keys = [
+            'browse_debtor',
+        ];
+
+        foreach ($keys as $key) {
+            Permission::firstOrCreate([
+                'key'        => $key,
+                'table_name' => 'debtor',
+            ]);
+        }
         
         
 
