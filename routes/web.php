@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DebtorController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'loggin'], function () {
     Route::resource('telephony', TelephonyController::class);
     Route::get('telephony/ajax/list/{search?}', [TelephonyController::class, 'list']);
     Route::post('telephony/importar', [TelephonyController::class, 'import'])->name('telephony.import');
+
+    Route::resource('debtor', DebtorController::class);
+    Route::get('debtor/ajax/list/{search?}', [DebtorController::class, 'list']);
+    Route::post('debtor/importar', [DebtorController::class, 'import'])->name('debtor.import');
 
 
 
