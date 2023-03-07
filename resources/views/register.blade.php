@@ -73,7 +73,7 @@
                             <div class="col-md-6 form-group" id="codes" style="display: none">
                                 <span ><b style="color: rgb(255, 255, 255)">Código</b></span>
                                 <input type="text" name="code" class="form-control" id="ci" placeholder="Código" value="{{ old('ci') }}" autocomplete="nope">
-                                <label class="label label-danger" style="color: red">Porfavor solicite su codigo de cliente en las oficinas de Coteautri </label>                                                                        
+                                <label class="label label-danger" style="color: rgb(255, 255, 255); font-size: 18px">Digite su codigo de cliente, si no tiene el codigo por favor solicitelo en las oficinas de Coteautri </label>                                                                        
 
                                 @error('ci')
                                     <div class="alert alert-danger">{{ $message }}</div>
