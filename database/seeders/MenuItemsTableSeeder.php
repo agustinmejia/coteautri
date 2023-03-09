@@ -295,7 +295,7 @@ class MenuItemsTableSeeder extends Seeder
             array (
                 'id' => 21,
                 'menu_id' => 1,
-                'title' => 'Consultas',
+                'title' => 'Deudas Pendientes',
                 'url' => '',
                 'target' => '_self',
                 'icon_class' => 'fa-solid fa-file',
@@ -303,9 +303,9 @@ class MenuItemsTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => 3,
                 'created_at' => '2023-03-06 16:01:37',
-                'updated_at' => '2023-03-06 16:01:55',
+                'updated_at' => '2023-03-07 17:51:39',
                 'route' => 'debtor.index',
-                'parameters' => NULL,
+                'parameters' => 'null',
             ),
         ));
         

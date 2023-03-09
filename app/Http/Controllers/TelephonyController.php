@@ -33,7 +33,7 @@ class TelephonyController extends Controller
     {
         DB::beginTransaction();
         try {
-            Telephony::where('deleted_at', null)->update(['deletedUser_id'=>Auth::user()->id, 'status'=>0, 'deleted_at'=>Carbon::now()]);
+            Telephony::where('deleted_at', null)->update(['deletedUser_id'=>Auth::user()->id, 'deleted_at'=>Carbon::now()]);
             $file = $request->file('file');
             Excel::import(new TelephonyImport, $file);
             DB::commit();

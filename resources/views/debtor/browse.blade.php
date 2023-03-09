@@ -84,14 +84,68 @@
                                     </div>
                                     <hr style="margin:0;">
                                 </div>                             
-                            </div>
-
-                            @if ($debt)
+                            </div>                            
+                                @php
+                                    $months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');    
+                                @endphp
                                 <div class="table-responsive">
                                     <table id="dataStyle" class="table-hover">
                                         <thead>
+                                            <tr>   
+                                                <th width="4%" rowspan="2" style="text-align: center">Año</th>
+                                                <th colspan="12" style="text-align: center">Meses</th>
+                                            </tr>
                                             <tr>
-                                                <th style="text-align: center">Codigo</th>
+                                                @foreach ($months as $item)
+                                                    <th width="8%" style="text-align: center">{{$item}}
+                                                        
+                                                    </th> 
+                                                @endforeach
+                                            </tr>                                           
+                                        </thead>
+                                        <tbody>
+                                            @if (count($debt)>0)
+                                                @foreach ($year as $y)
+                                                    <tr>
+                                                        <th style="text-align: center">{{$y->year}}</th>
+                                                        @for ($i = 1; $i <= count($months); $i++)
+                                                            @php
+                                                                $ok=true;
+                                                            @endphp
+                                                            @foreach ($mes as $m)                                                            
+                                                                @if ($y->year == $m->year && $i==$m->month)
+                                                                    @php
+                                                                        $ok=false;
+                                                                    @endphp
+                                                                    <td style="text-align: center">{{$m->monto}}
+                                                                        <br>
+                                                                        <a title="Detalle del mes {{$months[$i-1]}}" class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#show-modal"
+                                                                            data-mes="{{$months[$i-1]}}"
+                                                                            data-mes_id="{{$m->month}}"
+                                                                            data-ano="{{$y->year}}"
+                                                                        >
+                                                                            <i class="fa-solid fa-eye"></i><span class="hidden-xs hidden-sm"> Ver</span>
+                                                                        </a>
+                                                                    </td>                                                                    
+                                                                @endif
+                                                            @endforeach      
+                                                            @if ($ok)
+                                                                <td style="text-align: center"></td>      
+                                                            @endif                                                      
+                                                        @endfor        
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <tr style="text-align: center">
+                                                    <td colspan="13">No se encontraron registros.</td>
+                                                </tr>
+                                            @endif
+                                                                                                                   
+                                        </tbody>
+                                    </table>
+                                    {{-- <table id="dataStyle" class="table-hover">
+                                        <thead>
+                                            <tr>
                                                 <th style="text-align: center">Servicio ID</th>    
                                                 <th style="text-align: center">Detalle</th>    
                                                 <th style="text-align: center">Monto</th>    
@@ -103,7 +157,6 @@
                                         <tbody>
                                             @forelse ($debt as $item)
                                                 <tr>
-                                                    <td>{{ $item->code }}</td>
                                                     <td style="text-align: center">{{ $item->service_id}}</td>
                                                     <td>{{ $item->details}}</td>
                                                     <td style="text-align: right">{{ $item->amount}}</td>
@@ -117,9 +170,8 @@
                                                 </tr>
                                             @endforelse                                                                             
                                         </tbody>
-                                    </table>
+                                    </table> --}}
                                 </div>
-                            @endif
                         @endif
                         @if(auth()->user()->hasRole('admin'))
                             <div class="row">
@@ -144,6 +196,61 @@
             </div>
         </div>
     </div>
+
+
+    @if(!auth()->user()->hasRole('admin') && auth()->user()->hasRole('user'))
+
+        <div class="modal modal-info fade" data-backdrop="static" data-keyboard="false" tabindex="-1" id="show-modal" role="dialog">
+            <div class="modal-dialog modal-lg modal-dark">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"><i class="voyager-basket"></i> Detalles</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6" style="margin-bottom:0;">
+                                <div class="panel-heading" style="border-bottom:0;">
+                                    <h3 class="panel-title">Mes</h3>
+                                </div>
+                                <div class="panel-body" style="padding-top:0;">
+                                    <p id="label-mes">Value</p>
+                                </div>
+                                <hr style="margin:0;">
+                            </div>
+                            <div class="col-md-6" style="margin-bottom:0;">
+                                <div class="panel-heading" style="border-bottom:0;">
+                                    <h3 class="panel-title">Año</h3>
+                                </div>
+                                <div class="panel-body" style="padding-top:0;">
+                                    <p id="label-ano">Value</p>
+                                </div>
+                                <hr style="margin:0;">
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <table id="dataStyle" class="table table-bordered table-hover detalle">
+                                    <thead>
+                                        <tr>
+                                            <th width="5px" >N&deg;</th>
+                                            <th style="text-align: center">DETALLE</th>
+                                            <th width="150px" style="text-align: center">MONTO</th>
+                                            <th width="150px" style="text-align: center">ESTADO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 
 
 
@@ -214,6 +321,51 @@
     {{-- <script src="{{ url('js/main.js') }}"></script> --}}
         
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
+    @if (!auth()->user()->hasRole('admin') && auth()->user()->hasRole('user'))
+        <script>
+            $('#show-modal').on('show.bs.modal', function (event)
+            {
+                var code = {{$user->code}};
+                var button = $(event.relatedTarget);
+
+                var mes = button.data('mes');
+                var mes_id = button.data('mes_id');
+                var ano = button.data('ano');
+
+                var modal = $(this);
+
+                modal.find('.modal-body #label-mes').text(mes);
+                modal.find('.modal-body #label-ano').text(ano);
+
+                $('.detalle tbody').empty();
+                // alert(code)
+                $.get('{{url('admin/debtor/ajax/detalle')}}/'+code+'/'+mes_id+'/'+ano, function(data){
+                    // alert(data)
+                    for (var i=0; i<data.length; i++) {
+
+                        $('.detalle tbody').append(`
+                            <tr>
+                                <td><small>${i+1}</small></td>
+                                <td><small>${data[i].details}</small></td>
+                                <td class="text-right"><small>Bs. ${data[i].amount}</small></td>                              
+                                <td class="text-right"><small>${data[i].status}</small></td>                                  
+                            </tr>
+                        `);
+                    }
+                    if(data == '')
+                    {
+                        $('.detalle tbody').append(`
+                            <tr style="text-align: center">
+                                <td colspan="4">No se encontraron articulos.</td>
+                            </tr>
+                        `);
+                    }
+                });
+
+                      
+            })
+        </script>
+    @endif
     <script>
         var countPage = 10, order = 'id', typeOrder = 'desc';
         $(document).ready(() => {

@@ -18,6 +18,7 @@ class TelephonyImport implements ToModel
             return new Telephony([
                 'phone'       => $row[0]??NULL,
                 'full_name'   => $row[1]??NULL,
+                'status'   => $row[2]??NULL,
                 'registerUser_id' => $user
             ]);
         }

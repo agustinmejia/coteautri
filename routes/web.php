@@ -49,6 +49,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'loggin'], function () {
     Route::get('debtor/ajax/list/{search?}', [DebtorController::class, 'list']);
     Route::post('debtor/importar', [DebtorController::class, 'import'])->name('debtor.import');
 
+    //para ver el detalle de cada mes de los usuarios o socio
+    Route::get('debtor/ajax/detalle/{code}/{mes}/{ano?}', [DebtorController::class, 'detalle'])->name('debtor-ajax.detalle');
+
+
 
 
     Route::get('download/log/{cad?}', [AjaxController::class, 'downloadLg'])->name('download.log');

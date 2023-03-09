@@ -11,7 +11,7 @@
     <div class="container" style="padding: 120px 0 60px 0;">
       <div class="row gy-4 d-flex justify-content-between">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h2 data-aos="fade-up" style="color:#002576">GUIA TELEFONICA COTEAUTRI RL</h2>
+          <h2 data-aos="fade-up" style="color:#08acf2">CONSULTA DE NUMERO TELEFONICO COTEAUTRI RL</h2>
           <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para realizar búsqueda por numero telefónico o por nombre y/o apellido, escriba los datos en el siguiente cuadro y luego presione Buscar</p>
 
         

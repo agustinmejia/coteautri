@@ -17,7 +17,7 @@ class CreateTelephoniesTable extends Migration
             $table->id();
             $table->string('phone')->nullable();
             $table->string('full_name')->nullable();
-            $table->smallInteger('status')->default(1);
+            $table->string('status')->nullable();
             $table->foreignId('registerUser_id')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();

@@ -6,6 +6,7 @@
                     <tr>
                         <th style="text-align: center">TELEFONO</th>
                         <th style="text-align: center">NOMBRE COMPLETO</th>    
+                        <th style="text-align: center">ESTADO</th>    
                     </tr>
                 </thead>
                 <tbody style='background-color:#f1efef;'>
@@ -17,13 +18,14 @@
                             {{-- <td>{{ $i }}</td> --}}
                             <td style="text-align: center">{{ $item->phone }}</td>
                             <td>{{ $item->full_name}}</td>
+                            <td style="text-align: center">{{ $item->status}}</td>
                         </tr>
                         @php
                             $i++;
                         @endphp
                     @empty
                         <tr style="text-align: center">
-                            <td colspan="2" class="dataTables_empty">No hay datos disponibles</td>
+                            <td colspan="3" class="dataTables_empty">No hay datos disponibles</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -31,8 +33,8 @@
                 <thead>
                     <tr>
                         <th style="text-align: center">NOMBRE COMPLETO</th>    
-
                         <th style="text-align: center">TELEFONO</th>
+                        <th style="text-align: center">ESTADO</th>    
                     </tr>
                 </thead>
                 <tbody style='background-color:#f1efef;'>
@@ -45,13 +47,15 @@
                             <td>{{ $item->full_name}}</td>
 
                             <td style="text-align: center">{{ $item->phone }}</td>
+                            <td style="text-align: center">{{ $item->status}}</td>
+
                         </tr>
                         @php
                             $i++;
                         @endphp
                     @empty
                         <tr style="text-align: center">
-                            <td colspan="2" class="dataTables_empty">No hay datos disponibles</td>
+                            <td colspan="3" class="dataTables_empty">No hay datos disponibles</td>
                         </tr>
                     @endforelse
                 </tbody>

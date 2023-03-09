@@ -19,8 +19,12 @@ class DebtorController extends Controller
         {
             $user = People::where('user_id', Auth::user()->id)->first();
             $debt = Debtor::where('code', $user->code)->where('deleted_at', null)->get();
+            // return $debt;
+            $year = DB::table('debtors')->where('code', $user->code)->where('deleted_at', null)->select('year')->groupBy('year')->get();
+            $mes = DB::table('debtors')->where('code', $user->code)->where('deleted_at', null)->select('month', 'year', DB::raw("SUM(amount) as monto"))->groupBy('month', 'year')->get();
+            // return $mes;
 
-            return view('debtor.browse', compact('user', 'debt'));
+            return view('debtor.browse', compact('user', 'debt', 'year', 'mes'));
         }
         if(Auth::user()->hasRole('admin'))
         {
@@ -49,7 +53,7 @@ class DebtorController extends Controller
         // dd($request);
         DB::beginTransaction();
         try {
-            Debtor::where('deleted_at', null)->update(['deletedUser_id'=>Auth::user()->id, 'deleted_at'=>Carbon::now()]);
+            // Debtor::where('deleted_at', null)->update(['deletedUser_id'=>Auth::user()->id, 'deleted_at'=>Carbon::now()]);
             // return 1;
             $file = $request->file('file');
             Excel::import(new DebtorImport, $file);
@@ -61,5 +65,11 @@ class DebtorController extends Controller
             return redirect()->route('debtor.index')->with(['message' => 'Error....', 'alert-type' => 'error']);
         }
 
+    }
+
+    public function detalle($code, $mes, $ano)
+    {
+        // return $mes;
+        return Debtor::where('code', $code)->where('year', $ano)->where('month', $mes)->where('deleted_at', null)->get();
     }
 }
