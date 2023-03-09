@@ -59,21 +59,10 @@
                                         <h3 id="h4" class="panel-title">Nombre</h3>
                                     </div>
                                     <div class="panel-body" style="padding-top:0;">
-                                        <small>{{$user->first_name}}</small>
+                                        <small>{{$user->first_name}} {{$user->last_name}}</small>
                                     </div>
                                     <hr style="margin:0;">
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="panel-heading" style="border-bottom:0;">
-                                        <h3 id="h4" class="panel-title">Apellido</h3>
-                                    </div>
-                                    <div class="panel-body" style="padding-top:0;">
-                                        <small>{{$user->last_name}}</small>
-                                    </div>
-                                    <hr style="margin:0;">
-                                </div>                               
-                            </div>
-                            <div class="row">
+                                </div>    
                                 <div class="col-md-4">
                                     <div class="panel-heading" style="border-bottom:0;">
                                         <h3 id="h4" class="panel-title">Codigo Cliente</h3>
@@ -86,8 +75,8 @@
                                         @endif
                                     </div>
                                     <hr style="margin:0;">
-                                </div>                             
-                            </div>        
+                                </div>                          
+                            </div>      
                                 <div class="table-responsive">
                                     {{-- <table id="dataStyle" class="table-hover">
                                         <thead>
