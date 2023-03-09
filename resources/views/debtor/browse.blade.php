@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="panel-heading" style="border-bottom:0;">
-                                        <h3 id="h4" class="panel-title">Nombre</h3>
+                                        <h3 id="h4" class="panel-title">Nombre Completo</h3>
                                     </div>
                                     <div class="panel-body" style="padding-top:0;">
                                         <small>{{$user->first_name}} {{$user->last_name}}</small>
