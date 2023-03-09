@@ -348,7 +348,7 @@
                                 <td><small>${i+1}</small></td>
                                 <td><small>${data[i].details}</small></td>
                                 <td class="text-right"><small>Bs. ${data[i].amount}</small></td>                              
-                                <td class="text-right"><small>${data[i].status}</small></td>                                  
+                                <td class="text-center"><small>${data[i].status}</small></td>                                  
                             </tr>
                         `);
                     }
