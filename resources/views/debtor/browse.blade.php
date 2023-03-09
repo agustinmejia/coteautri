@@ -2,7 +2,7 @@
 
 @section('page_title', 'Viendo Telefonia')
 
-@if (auth()->user()->hasPermission('browse_debtor'))
+@if (auth()->user()->hasPermission('browse_debtors'))
 
 
 @section('page_header')
