@@ -145,6 +145,24 @@ class DataTypesTableSeeder extends Seeder
                 'created_at' => '2023-02-26 17:18:30',
                 'updated_at' => '2023-03-07 13:42:40',
             ),
+            7 => 
+            array (
+                'id' => 8,
+                'name' => 'debtors',
+                'slug' => 'debtors',
+                'display_name_singular' => 'Deuda Pendiente',
+                'display_name_plural' => 'Deudas Pendientes',
+                'icon' => 'fa-solid fa-file',
+                'model_name' => 'App\\Models\\Debtor',
+                'policy_name' => NULL,
+                'controller' => NULL,
+                'description' => NULL,
+                'generate_permissions' => 1,
+                'server_side' => 0,
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
+                'created_at' => '2023-03-09 21:24:50',
+                'updated_at' => '2023-03-09 21:32:31',
+            ),
         ));
         
         

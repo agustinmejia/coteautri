@@ -14,7 +14,7 @@
                     <th style="text-align: center">Mes</th>    
                     <th style="text-align: center">Año</th>      
                     <th style="text-align: center">Estado</th>
-                    <th width="20px" style="text-align: center">Acción</th>
+                    <th style="text-align: center">Acción</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +38,13 @@
                         </td>
 
                         <td style="text-align: right">
-                            <div class="no-sort no-click bread-actions text-right">                                
+                            <div class="no-sort no-click bread-actions text-right">   
+                                <a href="{{route('voyager.debtors.show',['id'=>$item->id])}}" title="Ver" class="btn btn-sm btn-warning">
+                                    <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver</span>
+                                </a>  
+                                <a href="{{route('voyager.debtors.edit',['id'=>$item->id])}}" title="Editar" class="btn btn-sm btn-primary">
+                                    <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar</span>
+                                </a>                             
                                 <button title="Anular" class="btn btn-sm btn-danger delete" data-toggle="modal" data-id="{{$item->id}}" data-target="#myModalEliminar">
                                     <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">Anular</span>
                                 </button>                                

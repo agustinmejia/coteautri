@@ -15,7 +15,13 @@
                             <h1 class="page-title">
                                 <i class="fa-solid fa-file"></i> Consultas de Deudas
                             </h1>
+                            @if(auth()->user()->hasRole('admin'))
+                                <a href="{{ route('voyager.debtors.create') }}" class="btn btn-success btn-add-new">
+                                    <i class="voyager-plus"></i> <span>Crear</span>
+                                </a>
+                            @endif
                         </div>
+                        
                         @if(auth()->user()->hasRole('admin'))
                             <form name="form_search" id="form-search" action="{{ route('debtor.import') }}" method="post" enctype="multipart/form-data">
                                 @csrf
@@ -31,11 +37,13 @@
                                 @csrf
                                 <div class="col-md-4 text-right" style="margin-top: 10px">
                                    
-                                    <button type="submit" class="btn btn-success">Exportar</button>
+                                    <button type="submit" class="btn btn-primary">Exportar</button>
 
                                 </div>                        
                             </form>
                         @endif
+
+                        
                     </div>
                 </div>
             </div>

@@ -45,7 +45,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'loggin'], function () {
     Route::get('telephony/ajax/list/{search?}', [TelephonyController::class, 'list']);
     Route::post('telephony/importar', [TelephonyController::class, 'import'])->name('telephony.import');
 
-    Route::resource('debtor', DebtorController::class);
+    // Route::resource('debtor', DebtorController::class);
+    Route::get('debtors', [DebtorController::class, 'index'])->name('voyager.debtors.index');
     Route::get('debtor/ajax/list/{search?}', [DebtorController::class, 'list']);
     Route::post('debtor/importar', [DebtorController::class, 'import'])->name('debtor.import');
     Route::post('debtor/exportar', [DebtorController::class, 'exportar'])->name('debtor.export');

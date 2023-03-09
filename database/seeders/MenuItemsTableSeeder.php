@@ -303,8 +303,8 @@ class MenuItemsTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => 3,
                 'created_at' => '2023-03-06 16:01:37',
-                'updated_at' => '2023-03-07 17:51:39',
-                'route' => 'debtor.index',
+                'updated_at' => '2023-03-09 21:45:23',
+                'route' => 'voyager.debtors.index',
                 'parameters' => 'null',
             ),
         ));
