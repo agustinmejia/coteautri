@@ -14,6 +14,7 @@
                     <th style="text-align: center">Mes</th>    
                     <th style="text-align: center">Año</th>      
                     <th style="text-align: center">Estado</th>
+                    <th width="20px" style="text-align: center">Acción</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +36,14 @@
                                 <label class="label label-danger">No pagadp</label>
                             @endif
                         </td>
-                        {{-- <td style="text-align: center">{{ $item->status}}</td>                         --}}
+
+                        <td style="text-align: right">
+                            <div class="no-sort no-click bread-actions text-right">                                
+                                <button title="Anular" class="btn btn-sm btn-danger delete" data-toggle="modal" data-id="{{$item->id}}" data-target="#myModalEliminar">
+                                    <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">Anular</span>
+                                </button>                                
+                            </div>
+                        </td>  
                     </tr>
                     @php
                         $i++;
