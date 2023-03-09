@@ -71,6 +71,6 @@ class DebtorController extends Controller
     public function detalle($code, $mes, $ano)
     {
         // return $mes;
-        return Debtor::where('code', $code)->where('year', $ano)->where('month', $mes)->where('deleted_at', null)->get();
+        return Debtor::where('code', $code)->where('year', $ano)->where('month', $mes)->where('status', 0)->where('deleted_at', null)->get();
     }
 }
