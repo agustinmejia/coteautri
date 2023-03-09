@@ -40,6 +40,9 @@
             <div class="col-md-12">
                 <div class="panel panel-bordered">
                     <div class="panel-body">
+                        @php
+                            $months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');    
+                        @endphp
                         @if(!auth()->user()->hasRole('admin') && auth()->user()->hasRole('user'))
                             <div class="row">
                                 <div class="col-md-4">
@@ -84,12 +87,9 @@
                                     </div>
                                     <hr style="margin:0;">
                                 </div>                             
-                            </div>                            
-                                @php
-                                    $months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');    
-                                @endphp
+                            </div>        
                                 <div class="table-responsive">
-                                    <table id="dataStyle" class="table-hover">
+                                    {{-- <table id="dataStyle" class="table-hover">
                                         <thead>
                                             <tr>   
                                                 <th width="4%" rowspan="2" style="text-align: center">Año</th>
@@ -142,35 +142,47 @@
                                             @endif
                                                                                                                    
                                         </tbody>
-                                    </table>
-                                    {{-- <table id="dataStyle" class="table-hover">
+                                    </table> --}}
+                                    <table id="dataStyle" style="margin-left:auto;margin-right:auto;" class="table-hover">
                                         <thead>
                                             <tr>
-                                                <th style="text-align: center">Servicio ID</th>    
-                                                <th style="text-align: center">Detalle</th>    
-                                                <th style="text-align: center">Monto</th>    
                                                 <th style="text-align: center">Mes</th>    
-                                                <th style="text-align: center">Año</th>      
-                                                <th style="text-align: center">Estado</th>
+                                                <th style="text-align: center">Año</th>       
+                                                <th style="text-align: center">Deuda</th>       
+                                                <th width="10px" style="text-align: center">Acción</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($debt as $item)
+                                            @php
+                                                $i=1;
+                                            @endphp
+                                            @forelse ($mes as $item)
+                                                @php
+                                                    $debt =\DB::table('debtors')->where('code',$user->code)->where('month', $item->month)->where('year', $item->year)->where('deleted_at', null)
+                                                        ->where('status', 0)->select('amount')->sum('amount');
+                                                        // dd($debt);
+                                                @endphp
                                                 <tr>
-                                                    <td style="text-align: center">{{ $item->service_id}}</td>
-                                                    <td>{{ $item->details}}</td>
-                                                    <td style="text-align: right">{{ $item->amount}}</td>
-                                                    <td style="text-align: center">{{ $item->month}}</td>
+                                                    <td style="text-align: center">{{$months[$item->month-1]}}</td>
                                                     <td style="text-align: center">{{ $item->year}}</td>
-                                                    <td style="text-align: center">{{ $item->status}}</td>                        
+                                                    <td style="text-align: right"><small>Bs. {{ $debt}}</small></td>
+                                                    <td style="text-align: center">
+                                                        <a title="Detalle del mes {{$months[$item->month-1]}}" class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#show-modal"
+                                                                            data-mes="{{$months[$item->month-1]}}"
+                                                                            data-mes_id="{{$item->month}}"
+                                                                            data-ano="{{$item->year}}"
+                                                        >
+                                                            <i class="fa-solid fa-eye"></i><span class="hidden-xs hidden-sm"> Ver</span>
+                                                        </a>
+                                                    </td>                        
                                                 </tr>
                                             @empty
                                                 <tr style="text-align: center">
-                                                    <td colspan="7" class="dataTables_empty">No hay datos disponibles en la tabla</td>
+                                                    <td colspan="3" class="dataTables_empty">No hay datos disponibles en la tabla</td>
                                                 </tr>
                                             @endforelse                                                                             
                                         </tbody>
-                                    </table> --}}
+                                    </table>
                                 </div>
                         @endif
                         @if(auth()->user()->hasRole('admin'))
@@ -229,13 +241,13 @@
                             </div>
                             
                             <div class="col-md-12">
-                                <table id="dataStyle" class="table table-bordered table-hover detalle">
+                                <table id="dataStyle1" class="table table-bordered table-hover detalle">
                                     <thead>
                                         <tr>
                                             <th width="5px" >N&deg;</th>
                                             <th style="text-align: center">DETALLE</th>
-                                            <th width="150px" style="text-align: center">MONTO</th>
                                             <th width="150px" style="text-align: center">ESTADO</th>
+                                            <th width="150px" style="text-align: center">MONTO</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -259,7 +271,15 @@
 @stop
 
 @section('css')
-<style>
+
+@if (!auth()->user()->hasRole('admin') && auth()->user()->hasRole('user'))
+    <style>
+        #dataStyle {
+            width: 50% !important;
+        }
+    </style>
+@endif
+<style>    
     small{font-size: 12px;
         color: rgb(12, 12, 12);
         font-weight: bold;
@@ -341,22 +361,33 @@
                 // alert(code)
                 $.get('{{url('admin/debtor/ajax/detalle')}}/'+code+'/'+mes_id+'/'+ano, function(data){
                     // alert(data)
+                    var total =0;
                     for (var i=0; i<data.length; i++) {
 
                         $('.detalle tbody').append(`
                             <tr>
                                 <td><small>${i+1}</small></td>
                                 <td><small>${data[i].details}</small></td>
+                                <td class="text-center"><label class="label ${data[i].status==1?'label-success':'label-danger'}">${data[i].status==1?'Pagado':'No pagado'}</label></td>  
                                 <td class="text-right"><small>Bs. ${data[i].amount}</small></td>                              
-                                <td class="text-center"><small>${data[i].status}</small></td>                                  
                             </tr>
                         `);
+                        total=parseFloat(total)+parseFloat(data[i].amount);
                     }
                     if(data == '')
                     {
                         $('.detalle tbody').append(`
                             <tr style="text-align: center">
                                 <td colspan="4">No se encontraron articulos.</td>
+                            </tr>
+                        `);
+                    }
+                    else
+                    {
+                        $('.detalle tbody').append(`
+                            <tr>
+                                <td colspan="3"><small>Total</small></td>
+                                <td class="text-right"><small>Bs. ${total}</small></td>                              
                             </tr>
                         `);
                     }

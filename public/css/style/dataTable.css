@@ -26,4 +26,44 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+    #dataStyle1 {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #dataStyle1 td, #dataStyle1 th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        color: black;
+    }
+
+    #dataStyle1 tr:nth-child(even){background-color: #f2f2f2;}
+
+    #dataStyle1 tr:hover {background-color: #ddd;}
+
+    #dataStyle1 th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        /* text-align: left; */
+        background-color: #22a7f0;
+        color: white;
+    }
+
+    
+
+
+
     

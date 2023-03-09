@@ -21,7 +21,8 @@ class DebtorController extends Controller
             $debt = Debtor::where('code', $user->code)->where('deleted_at', null)->get();
             // return $debt;
             $year = DB::table('debtors')->where('code', $user->code)->where('deleted_at', null)->select('year')->groupBy('year')->get();
-            $mes = DB::table('debtors')->where('code', $user->code)->where('deleted_at', null)->select('month', 'year', DB::raw("SUM(amount) as monto"))->groupBy('month', 'year')->get();
+            $mes = DB::table('debtors')->where('code', $user->code)->where('deleted_at', null)
+                ->select('month', 'year', DB::raw("SUM(amount) as monto"))->groupBy('month', 'year')->orderBy('month', 'ASC')->orderBy('year', 'ASC')->get();
             // return $mes;
 
             return view('debtor.browse', compact('user', 'debt', 'year', 'mes'));

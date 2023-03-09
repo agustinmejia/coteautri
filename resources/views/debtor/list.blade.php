@@ -1,5 +1,8 @@
 <div class="col-md-12">
     <div class="table-responsive">
+        @php
+            $months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');    
+        @endphp
         <table id="dataStyle" class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -23,9 +26,16 @@
                         <td style="text-align: center">{{ $item->service_id}}</td>
                         <td>{{ $item->details}}</td>
                         <td style="text-align: right">{{ $item->amount}}</td>
-                        <td style="text-align: center">{{ $item->month}}</td>
+                        <td style="text-align: center">{{ $months[$item->month-1]}}</td>
                         <td style="text-align: center">{{ $item->year}}</td>
-                        <td style="text-align: center">{{ $item->status}}</td>                        
+                        <td style="text-align: center">
+                            @if ($item->status == 1)
+                                <label class="label label-success">Pagado</label>
+                            @else
+                                <label class="label label-danger">No pagadp</label>
+                            @endif
+                        </td>
+                        {{-- <td style="text-align: center">{{ $item->status}}</td>                         --}}
                     </tr>
                     @php
                         $i++;

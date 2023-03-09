@@ -12,7 +12,7 @@ class DebtorImport implements ToModel
 {
     public function model(array $row)
     {
-        if (is_numeric($row[0]) && is_numeric($row[1]) &&  is_numeric($row[3]) &&  is_numeric($row[4]) && is_numeric($row[5])    && isset($row[0]) && isset($row[1]) && isset($row[3]) && isset($row[4]) && isset($row[5]))
+        if (is_numeric($row[0]) && is_numeric($row[1]) &&  is_numeric($row[3]) &&  is_numeric($row[4]) && is_numeric($row[5]) && is_numeric($row[6])       && isset($row[0]) && isset($row[1]) && isset($row[3]) && isset($row[4]) && isset($row[5]) && isset($row[6]))
         {
             $user = Auth::user()->id;
 
