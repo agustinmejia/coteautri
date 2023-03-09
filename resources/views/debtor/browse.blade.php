@@ -117,7 +117,7 @@
                                                                     @php
                                                                         $ok=false;
                                                                     @endphp
-                                                                    <td style="text-align: center">{{$m->monto}}
+                                                                    <td style="text-align: center">Bs. {{$m->monto}}
                                                                         <br>
                                                                         <a title="Detalle del mes {{$months[$i-1]}}" class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#show-modal"
                                                                             data-mes="{{$months[$i-1]}}"
