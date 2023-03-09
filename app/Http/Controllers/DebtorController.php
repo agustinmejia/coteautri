@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DebtorExport;
 use App\Imports\DebtorImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,5 +73,12 @@ class DebtorController extends Controller
     {
         // return $mes;
         return Debtor::where('code', $code)->where('year', $ano)->where('month', $mes)->where('status', 0)->where('deleted_at', null)->get();
+    }
+
+    public function exportar()
+    {
+        $date = Carbon::now();
+        $data = Debtor::where('deleted_at',null)->get();
+        return Excel::download(new DebtorExport($data), 'Consulta'.$date.'.xlsx');
     }
 }

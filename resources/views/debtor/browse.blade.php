@@ -26,6 +26,16 @@
                                 </div>                        
                             </form>
                         @endif
+                        @if(auth()->user()->hasRole('admin'))
+                            <form name="form_search" id="form-search" action="{{ route('debtor.export') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="col-md-4 text-right" style="margin-top: 10px">
+                                   
+                                    <button type="submit" class="btn btn-success">Exportar</button>
+
+                                </div>                        
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
