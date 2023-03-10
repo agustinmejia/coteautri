@@ -17,6 +17,8 @@ class CreateIndexPdfsTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->text('file')->nullable();
+            $table->text('url')->nullable();
+
 
             $table->smallInteger('status')->default(1);
             $table->foreignId('registerUser_id')->nullable()->constrained('users');

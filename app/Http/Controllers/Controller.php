@@ -18,6 +18,10 @@ use App\Models\IndexPdf;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function guia()
+    {
+        return view('guia.view');
+    }
 
     public function file($file, $id, $type)
     {
@@ -42,7 +46,7 @@ class Controller extends BaseController
             if($file)
             {      
                 $image = $this->file($file,Auth::user()->id, "index/image");
-                indexImage::where('status', 1)->update(['status'=>0]);
+                // indexImage::where('status', 1)->update(['status'=>0]);
                 IndexImage::create([
                     'image'=>$image,
                     'resgisterUser_id'=>Auth::user()->id
@@ -78,26 +82,34 @@ class Controller extends BaseController
                 IndexPdf::create([
                     'file'=>$pdf,
                     'registerUser_id'=>Auth::user()->id,
-                    'name' => $request->name
+                    'name' => $request->name,
+                    'url'=>$request->url
                 ]);
                 DB::commit();
-                return redirect()->route('voyager.dashboard')->with(['message' => 'Agregado exitosamente.', 'alert-type' => 'success']);
+                return redirect()->route('guia.index')->with(['message' => 'Agregado exitosamente.', 'alert-type' => 'success']);
             }
             else
             {
                 DB::rollBack();
-                return redirect()->route('voyager.dashboard')->with(['message' => 'Error....', 'alert-type' => 'error']);
+                return redirect()->route('guia.index')->with(['message' => 'Error....', 'alert-type' => 'error']);
             }
             
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->route('voyager.dashboard')->with(['message' => 'Error....', 'alert-type' => 'error']);
+            return redirect()->route('guia.index')->with(['message' => 'Error....', 'alert-type' => 'error']);
         }    
     }
     public function deletepdf($id)
     {
         // return $id;
         IndexPdf::where('id', $id)->update(['status'=>0]);
+        return redirect()->route('guia.index')->with(['message' => 'Eliminado exitosamente.', 'alert-type' => 'success']);
+    }
+
+    public function deleteImage($id)
+    {
+        // return $id;
+        IndexImage::where('id', $id)->update(['status'=>0]);
         return redirect()->route('voyager.dashboard')->with(['message' => 'Eliminado exitosamente.', 'alert-type' => 'success']);
     }
 }

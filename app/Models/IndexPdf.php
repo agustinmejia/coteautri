@@ -13,8 +13,8 @@ class IndexPdf extends Model
         'name',
         'file',
         'status',
-        'registerUser_id'
-
+        'registerUser_id',
+        'url'
     ];
     
 

@@ -41,6 +41,8 @@ Route::resource('coteautri', TemplateController::class);
 Route::group(['prefix' => 'admin', 'middleware' => 'loggin'], function () {
     Voyager::routes();
 
+    Route::get('guia', [Controller::class, 'guia'])->name('guia.index');
+
     Route::resource('telephony', TelephonyController::class);
     Route::get('telephony/ajax/list/{search?}', [TelephonyController::class, 'list']);
     Route::post('telephony/importar', [TelephonyController::class, 'import'])->name('telephony.import');
@@ -72,6 +74,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'loggin'], function () {
 
 
     Route::post('index/image', [Controller::class, 'indexImage'])->name('index.image');
+    Route::get('index/image/delete/{id?}', [Controller::class, 'deleteImage'])->name('delete.image');
 
     Route::post('index/pdf', [Controller::class, 'indexpdf'])->name('index.pdf');
     Route::get('index/pdf/delete/{id?}', [Controller::class, 'deletepdf'])->name('delete.pdf');

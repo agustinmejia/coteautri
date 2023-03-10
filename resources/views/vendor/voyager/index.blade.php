@@ -6,45 +6,36 @@
         @include('voyager::dimmers') --}}
         
         <div class="analytics-container">
+            
             @if (auth()->user()->hasRole('admin'))
                 <div class="row">
-                    <form name="form_search" id="form-search" action="{{ route('index.pdf') }}" method="post" enctype="multipart/form-data">
+                    <hr>
+                    <form name="form_search" id="form-search" action="{{ route('index.image') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                    
-                            <div class="form-group col-md-6">
-                                <small>Pdf</small>
-                                <input type="file" accept="application/pdf" name="file" id="file" class="form-control text imageLengthpdf">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <small>Nombre</small>
-                                <input type="text" name="name" maxlength="15" class="form-control">
-                            </div>
-                            
-                        <div class="row">
-                            <div class="col-md-12 text-right">
-                                <button type="submit" class="btn btn-primary">Actualizar</button>
-                            </div>
+                        <div class="col-md-4 text-right" style="margin-top: 10px">
+                            {{-- <input type="file" name="file" class="form-control imageLength" required> --}}
+                            <input type="file" accept="image/jpeg,image/jpg,image/png" name="file" id="file" class="form-control text imageLength">
+
+                            <button type="submit" class="btn btn-success">Agregar</button>    
                         </div>
-                     
-                </form>
+                    </form>
 
                 </div>
-
+                <br>
             @endif
+            <br><br>
 
         
             <div class="row" style="text-align: center">
                 @php
-                    $pdf =  \App\Models\IndexPdf::where('status',1)->get();
+                    $aux =  \App\Models\IndexImage::where('status',1)->get();
                 @endphp
-                @foreach ($pdf as $item)
-                    <div class="col-md-4" >
-                        <a href="{{asset('storage/'.$item->file)}}" target="_blank" title="Descargar" class="btn" onclick="download_log('{{$item->name}}')" style=" margin-top: 1em; border-radius: 20px; height:200px; width: 250px; background-color: #08acf2; color:#ffffff; " data-toggle="modal" >
-                            <i class="fa-solid fa-file-pdf" style="color: #ffffff; font-size: 6em;"></i> <br>
-                            <p style="font-size: 20px">{{$item->name}}</p>
-                        </a>
+                @foreach ($aux as $item)
+                    <div class="col-md-6" >
+                        <img src="{{asset('storage/'.$item->image)}}" alt="" style="height:350px; width: 400px">                    
+
                         @if(auth()->user()->hasRole('admin'))
-                            <a href="{{route('delete.pdf', ['id'=>$item->id])}}" class="btn btn-danger" data-toggle="modal" style="width: 50px; height:40px">
+                            <a href="{{route('delete.image', ['id'=>$item->id])}}" class="btn btn-danger" data-toggle="modal" style="width: 50px; height:40px">
                                 <i class="fa-solid fa-trash"></i><span class="hidden-xs hidden-sm"><br></span>
                             </a>
                         @endif
@@ -52,30 +43,6 @@
                 @endforeach
                 
 
-            </div>
-                @if (auth()->user()->hasRole('admin'))
-                <br><br>
-                <hr>
-                    <form name="form_search" id="form-search" action="{{ route('index.image') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="col-md-4 text-right" style="margin-top: 10px">
-                            {{-- <input type="file" name="file" class="form-control imageLength" required> --}}
-                            <input type="file" accept="image/jpeg,image/jpg,image/png" name="file" id="file" class="form-control text imageLength">
-
-                            <button type="submit" class="btn btn-success">Cambiar</button>    
-                        </div>
-                    </form>
-                @endif
-            
-            <div class="row" style="text-align: center">
-                
-                @php
-                    $aux =  \App\Models\IndexImage::where('status',1)->first();
-                @endphp
-
-                @if ($aux)
-                    <img src="{{asset('storage/'.$aux->image)}}" alt="" style="width: 100%; height: 300px">                    
-                @endif
             </div>
 
             
