@@ -113,7 +113,7 @@
             <p style="text-align: right">Total de Otros: {{$otros}}</p>
         </div>
         <div class="row" style="font-size: 9pt">
-            <p style="text-align: right">Total de Admin: {{$admin}}</p>
+            <p style="text-align: right">Total de Administrador: {{$admin}}</p>
         </div>
     @endif
     {{-- <table width="100%" style="font-size: 9px">

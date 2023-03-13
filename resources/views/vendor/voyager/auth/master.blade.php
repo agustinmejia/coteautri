@@ -14,7 +14,7 @@
     @endif
     <style>
         body {
-            background-image:url('{{ asset("img/login.jpg") }}');
+            background-image:url('{{ asset("img/login.jpeg") }}');
             background-color: {{ Voyager::setting("admin.bg_color", "#FFFFFF" ) }};
         }
         body.login .login-sidebar {

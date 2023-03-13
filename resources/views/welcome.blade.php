@@ -1,15 +1,87 @@
 @extends('layout-template.master')
 
 <!-- ======= Hero Section ======= -->
-@include('layout-template.banner')
+
 <!-- End Hero -->
 
 @section('main')
+<section id="heros" class="hero d-flex align-items-center">
+  
+  <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4); height: 100vh">
+    <div class="container" style="padding: 120px 0 60px 0;">
+      <div class="row gy-4 d-flex justify-content-between">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center scroll">
+          <h2 data-aos="fade-up" style="color:#08acf2">CONSULTA DEL DIRECTORIO TELEFONICO</h2>
+          <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para Descargar la Guía Telefonica Digital debe Registrarse e ingresar a nuestra Oficina Virtual.</p>
+          <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para realizar busqueda por numero telefonico o por nombre y/o apellido, escriba los datos en el siguiente cuadro y luego presione Buscar</p>
+          <div class="form-inline">
+            <div id="field_wrapper">
+              <div class="my-class-form-control-group">
+                <input type="text" id="input-search" class="form-control" placeholder="Buscar..." style="width:250;height:50px"> &nbsp;
+                <a class="btn btn-info" onclick="buscar()" id="add_button" style="width: 50px; height: 46px; font-size: 28px; justify-content: center;"><i class="fa-solid fa-magnifying-glass"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+            <img src="assets/img/hero-img.svg" class="img-fluid mb-3 mb-lg-0" alt="">
+          </div>
+          <div class="row">
+                <div class="table-responsive" id="div-results">
+                </div>
+          </div>
+        </div>
 
 
+        
 
-    {{-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script> --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+      </div>
+    </div>
+  </div>
+
+
+  </section>
+  <style> 
+  div.scrolls {
+        /* background-color: #6e4f6f; */
+        /* width: 600px; */
+        /* height: 600px; */
+        height: 400px;
+        overflow-x: auto;
+        overflow-y: auto;
+        /* text-align: center; */
+        padding: 20px;
+      }
+      .my-class-form-control-group{
+        display:flex;
+        align-items:Center;
+      }
+
+      
+
+      #dataStyle {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+
+      #dataStyle td, #dataStyle th {
+          border: 1px solid #ddd;
+          padding: 8px;
+          color: black;
+      }
+
+      /* #dataStyle tr:nth-child(even){background-color: #de1111;} */
+
+      #dataStyle tr:hover {background-color: #ddd;}
+
+      #dataStyle th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          /* text-align: left; */
+          background-color: #08acf2;
+          color: white;
+      }
+    </style>
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

@@ -1,6 +1,6 @@
 @extends('voyager::master')
 
-@section('page_title', 'Reporte Recaudacion Diaria')
+@section('page_title', 'Reporte de descarga')
 @if(auth()->user()->hasPermission('browse_printdownload'))
 
 
