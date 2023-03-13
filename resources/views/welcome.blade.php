@@ -41,7 +41,7 @@
 
   </section>
   <style> 
-  div.scrolls {
+  div.scroll {
         /* background-color: #6e4f6f; */
         /* width: 600px; */
         /* height: 600px; */
