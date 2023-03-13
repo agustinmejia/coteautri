@@ -1,6 +1,6 @@
 @extends('voyager::master')
 
-@section('page_title', 'Viendo Telefonia')
+@section('page_title', 'Viendo Deudas')
 
 @if (auth()->user()->hasPermission('browse_debtors'))
 
