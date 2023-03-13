@@ -17,7 +17,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <b>Nombre</b>
-                                <input type="text" name="name" placeholder="Ingrese el nombre del archivo" maxlength="15" class="form-control" required>
+                                <input type="text" name="name" placeholder="Ingrese el nombre del archivo" maxlength="50" class="form-control" required>
                             </div>
                             <div class="form-group col-md-5">
                                 <b>URL</b>
@@ -48,12 +48,11 @@
                             <p style="font-size: 20px">{{$item->name}}</p>
                         </a> --}}
                         <div class="col-md-2"></div>
-                        <div @if(auth()->user()->hasRole('admin')) class="col-md-8" @else class="col-md-8" @endif style="background-color: #08acf2; margin-top: 1em; border-radius: 20px; height:300px">
+                        <div @if(auth()->user()->hasRole('admin')) class="col-md-8" @else class="col-md-8" @endif style="background-color: #08acf2; margin-top: 1em; border-radius: 20px; height:350px">
                             <br>
                             <i class="fa-solid fa-file-pdf" style="color: #ffffff; font-size: 6em;"></i>
-                            <p style="font-size: 30px; color: #ffffff;">{{$item->name}}</p>
-                            <br>
-                            <br><br>
+                            <p style="font-size: 22px; color: #ffffff;">{{$item->name}}</p>
+                            
                             <a href="{{asset('storage/'.$item->file)}}" download="{{$item->name}}.pdf"  title="Descargar" onclick="download_log('{{$item->name}}')" class="btn btn-success">
                                 <i class="fa-solid fa-download"></i><span class="hidden-xs hidden-sm">Descargar</span>
                             </a>

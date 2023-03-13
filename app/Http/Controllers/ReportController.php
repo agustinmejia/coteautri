@@ -25,6 +25,7 @@ class ReportController extends Controller
     public function listDownload(Request $request)
     {
         // dump($request);
+        $type = $request->type;
 
         $query = 'type = "'.$request->type.'"';
         if($request->type == 'Todos')
@@ -43,7 +44,7 @@ class ReportController extends Controller
         if($request->print){
             $start = $request->start;
             $finish = $request->finish;
-            return view('report.download.print', compact('data', 'start', 'finish'));
+            return view('report.download.print', compact('data', 'start', 'finish', 'type'));
         }else{
             return view('report.download.list', compact('data'));
         }

@@ -49,6 +49,11 @@
         <tbody>
             @php
                 $count = 1;
+                $total =0;
+                $admin =0;
+                $otros =0;
+                $usuario =0;
+                $socio =0;
             @endphp
             @forelse ($data as $item)
                 <tr>
@@ -60,7 +65,6 @@
                             <td style="text-align: left">{{ $aux?$aux->ci:''}}</td>
                             <td style="text-align: left">{{ $aux?$aux->first_name.' '.$aux->last_name:''}}</td>
                             <td style="text-align: left">{{ $item->email}}</td>
-                            {{-- <td style="text-align: left">{{ $item->role}}</td> --}}
                             <td style="text-align: left">{{ $item->ip_address}}</td>
                             <td style="text-align: left">{{ $item->user_agent}}</td>
                             <td style="text-align: left">{{ $item->url}}</td>
@@ -68,20 +72,50 @@
                 </tr>
                     
                 @php
-                    $count++;                               
+                    $count++;
+                    $total++;
+                    if ($item->type=='Usuario') {
+                        $usuario++;
+                    }   
+                    if ($item->type=='admin') {
+                        $admin++;
+                    }   
+                    if ($item->type =='Otros') {
+                        $otros++;
+                    }   
+                    if ($item->type=='Socio') {
+                        $socio++;
+                    }                               
                 @endphp
             @empty
                 <tr style="text-align: center">
                     <td colspan="9">No se encontraron registros.</td>
                 </tr>
             @endforelse
+            <tr>
+                <td colspan="8" class="text-right"><strong>TOTAL DE DESCARGA</strong></td>
+                <td style="text-align: right"><strong>{{$total}}</strong></td>
+            </tr>
         </tbody>       
        
 
     </table>
+    
 
-    <br>
-    <br>
+    @if ($type=='Todos')
+        <div class="row" style="font-size: 9pt">
+            <p style="text-align: right">Total de Usuarios: {{$usuario}}</p>
+        </div>
+        <div class="row" style="font-size: 9pt">
+            <p style="text-align: right">Total de Socios: {{$socio}}</p>
+        </div>
+        <div class="row" style="font-size: 9pt">
+            <p style="text-align: right">Total de Otros: {{$otros}}</p>
+        </div>
+        <div class="row" style="font-size: 9pt">
+            <p style="text-align: right">Total de Admin: {{$admin}}</p>
+        </div>
+    @endif
     {{-- <table width="100%" style="font-size: 9px">
         <tr>
             <td style="text-align: center">

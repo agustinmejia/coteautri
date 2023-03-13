@@ -37,6 +37,7 @@
                                         <select name="type" class="form-control select2" required>
                                             <option value=""disabled selected>--- Seleccione una opcion ---</option>                                          
                                             <option value="Todos">Todos</option>                                          
+                                            <option value="admin">Admin</option>                                          
                                             <option value="Usuario">Usuario</option>                                          
                                             <option value="Socio">Socio</option>                                          
                                             <option value="Otros">Otros</option>                                          

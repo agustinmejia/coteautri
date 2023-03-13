@@ -60,11 +60,11 @@ class DebtorController extends Controller
             $file = $request->file('file');
             Excel::import(new DebtorImport, $file);
             DB::commit();
-            return redirect()->route('debtor.index')->with(['message' => 'Importado exitosamente.', 'alert-type' => 'success']);
+            return redirect()->route('voyager.debtors.index')->with(['message' => 'Importado exitosamente.', 'alert-type' => 'success']);
 
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->route('debtor.index')->with(['message' => 'Error....', 'alert-type' => 'error']);
+            return redirect()->route('voyager.debtors.index')->with(['message' => 'Error....', 'alert-type' => 'error']);
         }
 
     }
@@ -88,10 +88,10 @@ class DebtorController extends Controller
             $debt = Debtor::where('id', $request->id)->first();
             $debt->update(['deleted_at'=>Carbon::now()]);
             DB::commit();
-            return redirect()->route('voyager.debtor.index')->with(['message' => 'Eliminado exitosamente.', 'alert-type' => 'success']);
+            return redirect()->route('voyager.debtors.index')->with(['message' => 'Eliminado exitosamente.', 'alert-type' => 'success']);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->route('voyager.debtor.index')->with(['message' => 'Error....', 'alert-type' => 'error']);
+            return redirect()->route('voyager.debtors.index')->with(['message' => 'Error....', 'alert-type' => 'error']);
         }
     }
 }

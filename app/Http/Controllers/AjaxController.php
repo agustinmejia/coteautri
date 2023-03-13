@@ -12,9 +12,10 @@ class AjaxController extends Controller
 {
     public function downloadLg($cad)
     {
-        $people = People::where('user_id', Auth::user()->id)->first()->type;
+        $people = People::where('user_id', Auth::user()->id)->first();
+        // return $people->type??'admin';
         return DownloadLog::create([
-            'type'=> $people??'admin',
+            'type'=> $people->type??'admin',
             'user_id'=>Auth::user()->id,
             'user'=>Auth::user()->name,
             'role'=>Auth::user()->role->name,

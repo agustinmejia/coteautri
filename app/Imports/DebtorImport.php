@@ -47,7 +47,7 @@ class DebtorImport implements ToModel
         }
         else
         {
-            return null;
+            // return null;
         }
     }
 }
