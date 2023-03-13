@@ -8,6 +8,7 @@
 <section id="heros" class="hero d-flex align-items-center">
   
   <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4); height: 100vh">
+
     <div class="container" style="padding: 120px 0 60px 0;">
       <div class="row">
         
@@ -49,13 +50,21 @@
         height: 550px;
         overflow-x: hidden;
         overflow-y: auto;
-        /* overflow: hidden; */
+        
+
+        /* display: none; */
+        /* scrollbar-color:  transparent transparent; */
+        scrollbar-color: #09C transparent;
 
 
     
 
         padding: 20px;
       }
+
+      ::-webkit-scrollbar {
+  width: 1px;
+}
 
       .my-class-form-control-group{
         display:flex;
