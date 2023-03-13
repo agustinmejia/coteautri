@@ -33,7 +33,7 @@
                             @if ($item->status == 1)
                                 <label class="label label-success">Pagado</label>
                             @else
-                                <label class="label label-danger">No pagadp</label>
+                                <label class="label label-danger">No pagado</label>
                             @endif
                         </td>
 
