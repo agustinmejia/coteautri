@@ -11,8 +11,7 @@
     <div class="container" style="padding: 120px 0 60px 0;">
       <div class="row gy-4 d-flex justify-content-between">
         
-
-        <div class="col-lg-6  order-lg-1 d-flex flex-column justify-content-center scroll">
+        <div class="col-lg-6 scroll">
           <h2 data-aos="fade-up" style="color:#08acf2">CONSULTA DEL DIRECTORIO TELEFONICO</h2>
           <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para Descargar la Guía Telefonica Digital debe Registrarse e ingresar a nuestra Oficina Virtual.</p>
           <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para realizar busqueda por numero telefonico o por nombre y/o apellido, escriba los datos en el siguiente cuadro y luego presione Buscar</p>
@@ -34,7 +33,6 @@
         </div>
 
 
-
         
 
       </div>
@@ -44,15 +42,18 @@
 
   </section>
   <style> 
-  div.scroll {
-        /* background-color: #6e4f6f; */
-        
-        height: 400px;
+      div.scroll {
+        height: 550px;
         overflow-x: hidden;
         overflow-y: auto;
-        /* text-align: center; */
+        /* overflow: hidden; */
+
+
+    
+
         padding: 20px;
       }
+
       .my-class-form-control-group{
         display:flex;
         align-items:Center;
