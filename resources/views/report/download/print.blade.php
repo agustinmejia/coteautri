@@ -104,16 +104,16 @@
 
     @if ($type=='Todos')
         <div class="row" style="font-size: 9pt">
-            <p style="text-align: right">Total de Usuarios: {{$usuario}}</p>
+            <p style="text-align: left">Total de Usuarios: {{$usuario}}</p>
         </div>
         <div class="row" style="font-size: 9pt">
-            <p style="text-align: right">Total de Socios: {{$socio}}</p>
+            <p style="text-align: left">Total de Socios: {{$socio}}</p>
         </div>
         <div class="row" style="font-size: 9pt">
-            <p style="text-align: right">Total de Otros: {{$otros}}</p>
+            <p style="text-align: left">Total de Otros: {{$otros}}</p>
         </div>
         <div class="row" style="font-size: 9pt">
-            <p style="text-align: right">Total de Administrador: {{$admin}}</p>
+            <p style="text-align: left">Total de Administrador: {{$admin}}</p>
         </div>
     @endif
     {{-- <table width="100%" style="font-size: 9px">
