@@ -9,9 +9,9 @@
   
   <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4); height: 100vh">
     <div class="container" style="padding: 120px 0 60px 0;">
-      <div class="row gy-4 d-flex justify-content-between">
+      <div class="row">
         
-        <div class="col-lg-6 scroll">
+        <div class="col-lg-7 scroll">
           <h2 data-aos="fade-up" style="color:#08acf2">CONSULTA DEL DIRECTORIO TELEFONICO</h2>
           <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para Descargar la Guía Telefonica Digital debe Registrarse e ingresar a nuestra Oficina Virtual.</p>
           <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para realizar busqueda por numero telefonico o por nombre y/o apellido, escriba los datos en el siguiente cuadro y luego presione Buscar</p>
@@ -30,6 +30,9 @@
                 <div class="table-responsive" id="div-results">
                 </div>
           </div>
+        </div>
+
+        <div class="col-lg-5" >
         </div>
 
 
