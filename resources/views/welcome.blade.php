@@ -21,7 +21,7 @@
                 <div class="form-inline">
                     <div id="field_wrapper">
                     <div class="my-class-form-control-group">
-                        <input type="text" id="input-search" class="form-control" placeholder="Buscar..." value="juan" style="width:250;height:50px"> &nbsp;
+                        <input type="text" id="input-search" class="form-control" placeholder="Buscar..." style="width:250;height:50px"> &nbsp;
                         <a  class="btn btn-info" onclick="buscar()" id="add_button" style="width: 50px; height: 46px; font-size: 28px; justify-content: center;"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </div>
                     </div>
