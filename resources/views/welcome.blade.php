@@ -12,16 +12,20 @@
     <div class="container" style="padding: 120px 0 60px 0;">
       <div class="row">
         
-        <div class="col-lg-7 scroll">
-          <h2 data-aos="fade-up" style="color:#08acf2">CONSULTA DEL DIRECTORIO TELEFONICO</h2>
-          <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para Descargar la Guía Telefonica Digital debe Registrarse e ingresar a nuestra Oficina Virtual.</p>
-          <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para realizar busqueda por numero telefonico o por nombre y/o apellido, escriba los datos en el siguiente cuadro y luego presione Buscar</p>
-          <div class="form-inline">
-            <div id="field_wrapper">
-              <div class="my-class-form-control-group">
-                <input type="text" id="input-search" class="form-control" placeholder="Buscar..." style="width:250;height:50px"> &nbsp;
-                <a class="btn btn-info" onclick="buscar()" id="add_button" style="width: 50px; height: 46px; font-size: 28px; justify-content: center;"><i class="fa-solid fa-magnifying-glass"></i></a>
-              </div>
+        <div class="col-lg-12  scroll">
+          <div class="row">
+            <div class="col-lg-7">
+                <h2 data-aos="fade-up" style="color:#08acf2">CONSULTA DEL DIRECTORIO TELEFONICO</h2>
+                <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para Descargar la Guía Telefonica Digital debe Registrarse e ingresar a nuestra Oficina Virtual.</p>
+                <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para realizar busqueda por numero telefonico o por nombre y/o apellido, escriba los datos en el siguiente cuadro y luego presione Buscar</p>
+                <div class="form-inline">
+                    <div id="field_wrapper">
+                    <div class="my-class-form-control-group">
+                        <input type="text" id="input-search" class="form-control" placeholder="Buscar..." style="width:250;height:50px"> &nbsp;
+                        <a class="btn btn-info" onclick="buscar()" id="add_button" style="width: 50px; height: 46px; font-size: 28px; justify-content: center;"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    </div>
+                    </div>
+                </div>
             </div>
           </div>
           <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
@@ -33,8 +37,6 @@
           </div>
         </div>
 
-        <div class="col-lg-5" >
-        </div>
 
 
         
@@ -47,7 +49,7 @@
   </section>
   <style> 
       div.scroll {
-        height: 550px;
+        height: 700px;
         overflow-x: hidden;
         overflow-y: auto;
         
