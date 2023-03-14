@@ -8,21 +8,21 @@
 <section id="heros" class="hero d-flex align-items-center">
   
   <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4); height: 100vh">
-
-    <div class="container" style="padding: 120px 0 60px 0;">
+    {{-- <h1>hola</h1> --}}
+    <div class="container"style="padding: 120px 0 60px 0;">
       <div class="row">
         
         <div class="col-lg-12  scroll">
           <div class="row">
             <div class="col-lg-7">
-                <h2 data-aos="fade-up" style="color:#08acf2">CONSULTA DEL DIRECTORIO TELEFONICO</h2>
-                <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para Descargar la Guía Telefonica Digital debe Registrarse e ingresar a nuestra Oficina Virtual.</p>
-                <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para realizar busqueda por numero telefonico o por nombre y/o apellido, escriba los datos en el siguiente cuadro y luego presione Buscar</p>
+                <h2 data-aos="fade-up" id="title" style="color:#08acf2">CONSULTA DEL DIRECTORIO TELEFONICO</h2>
+                <p data-aos="fade-up" id="subtitle" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para Descargar la Guía Telefonica Digital debe Registrarse e ingresar a nuestra Oficina Virtual. <br>Para realizar busqueda por numero telefonico o por nombre y/o apellido, escriba los datos en el siguiente cuadro y luego presione Buscar</p>
+                {{-- <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para realizar busqueda por numero telefonico o por nombre y/o apellido, escriba los datos en el siguiente cuadro y luego presione Buscar</p> --}}
                 <div class="form-inline">
                     <div id="field_wrapper">
                     <div class="my-class-form-control-group">
-                        <input type="text" id="input-search" class="form-control" placeholder="Buscar..." style="width:250;height:50px"> &nbsp;
-                        <a class="btn btn-info" onclick="buscar()" id="add_button" style="width: 50px; height: 46px; font-size: 28px; justify-content: center;"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <input type="text" id="input-search" class="form-control" placeholder="Buscar..." value="juan" style="width:250;height:50px"> &nbsp;
+                        <a href="#result" class="btn btn-info" onclick="buscar()" id="add_button" style="width: 50px; height: 46px; font-size: 28px; justify-content: center;"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
           <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
             <img src="assets/img/hero-img.svg" class="img-fluid mb-3 mb-lg-0" alt="">
           </div>
-          <div class="row">
+          <div class="row" id="result">
                 <div class="table-responsive" id="div-results">
                 </div>
           </div>
@@ -49,7 +49,7 @@
   </section>
   <style> 
       div.scroll {
-        height: 500px;
+        height: 700px;
         overflow-x: hidden;
         overflow-y: auto;
         
@@ -137,6 +137,12 @@
                 
                 success: function(result){
                     $("#div-results").html(result);
+
+                    $('#title').css('display', 'none');
+                    $('#subtitle').css('display', 'none');
+
+                    var top = $('#div-results').offset().top +50;
+                    $('html,body').animate({scrollTop: top}, 1000);
                 }
             });
 

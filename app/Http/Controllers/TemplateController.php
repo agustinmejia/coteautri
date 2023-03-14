@@ -34,7 +34,7 @@ class TemplateController extends Controller
             {
                 $op = 1;
             }
-            $paginate = 10;
+            $paginate = 7;
             // dump($paginate);
             $data = Telephony::where(function($query) use ($search){
                         $query->OrWhereRaw($search ? "full_name like '%$search%'" : 1)
