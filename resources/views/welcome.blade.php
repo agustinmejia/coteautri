@@ -49,7 +49,7 @@
   </section>
   <style> 
       div.scroll {
-        height: 700px;
+        height: 500px;
         overflow-x: hidden;
         overflow-y: auto;
         
