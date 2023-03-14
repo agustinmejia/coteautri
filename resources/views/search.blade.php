@@ -78,9 +78,11 @@
 </div>
 
 <script>
+    
    
    var page = "{{ request('page') }}";
     $(document).ready(function(){
+        
         $('.page-link').click(function(e){
             e.preventDefault();
             let link = $(this).attr('href');

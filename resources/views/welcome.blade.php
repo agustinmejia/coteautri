@@ -22,7 +22,7 @@
                     <div id="field_wrapper">
                     <div class="my-class-form-control-group">
                         <input type="text" id="input-search" class="form-control" placeholder="Buscar..." value="juan" style="width:250;height:50px"> &nbsp;
-                        <a href="#result" class="btn btn-info" onclick="buscar()" id="add_button" style="width: 50px; height: 46px; font-size: 28px; justify-content: center;"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <a  class="btn btn-info" onclick="buscar()" id="add_button" style="width: 50px; height: 46px; font-size: 28px; justify-content: center;"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </div>
                     </div>
                 </div>
@@ -53,10 +53,6 @@
         overflow-x: hidden;
         overflow-y: auto;
         
-
-        /* display: none; */
-        /* scrollbar-color:  transparent transparent; */
-        scrollbar-color: #09C transparent;
 
 
     
@@ -121,8 +117,10 @@
 
         function buscar()
         {
+            // $("#div-results").html('');
             list();
         }
+        var i=0;
         function list(page = 1){
             // $('#div-results').loading({message: 'Cargando...'});
             var loader = '<div class="col-md-12 bg"><div class="loader" id="loader-3"></div></div>'
@@ -136,13 +134,14 @@
                 type: 'get',
                 
                 success: function(result){
+                    alert(result)
                     $("#div-results").html(result);
 
                     $('#title').css('display', 'none');
                     $('#subtitle').css('display', 'none');
 
                     var top = $('#div-results').offset().top +50;
-                    $('html,body').animate({scrollTop: top}, 1000);
+                    $('html,body').animate({scrollTop: 50}, 1000);
                 }
             });
 

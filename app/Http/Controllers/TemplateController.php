@@ -41,9 +41,16 @@ class TemplateController extends Controller
                         ->OrWhereRaw($search ? "phone like '%$search%'" : 1);
                         })
                         ->where('deleted_at', NULL)->orderBy('id', 'DESC')->paginate($paginate);
+            $aux = 1;
+            // dump($aux);
                         // $data = 1;
                         // dd($data->links());
-            return view('search', compact('data', 'op'));
+            return view('search', compact('data', 'op', 'aux'));
+        }
+        else
+        {
+            $aux =0;
+            return view('search', compact('data', 'op', 'aux'));
         }
 
     }
