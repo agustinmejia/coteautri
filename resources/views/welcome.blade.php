@@ -128,6 +128,11 @@
 
             let url = '{{ url("home/search") }}';
             let search = $('#input-search').val() ? $('#input-search').val() : '';
+            if(search=='')
+            {
+                $('#title').css('display', 'block');
+                $('#subtitle').css('display', 'block');
+            }
 
             $.ajax({
                 url: `${url}/${search}?paginate=${countPage}&page=${page}`,
