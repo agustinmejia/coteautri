@@ -134,7 +134,7 @@
                 type: 'get',
                 
                 success: function(result){
-                    alert(result)
+                    // alert(result)
                     $("#div-results").html(result);
 
                     $('#title').css('display', 'none');
