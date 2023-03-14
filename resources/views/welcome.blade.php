@@ -13,8 +13,8 @@
       <div class="row">
         
         <div class="col-lg-12  scroll">
-          <div class="row">
-            <div class="col-lg-7">
+          <div class="row" style="padding: 15px;">
+            <div class="col-lg-7" >
                 <h2 data-aos="fade-up" id="title" style="color:#08acf2">CONSULTA DEL DIRECTORIO TELEFONICO</h2>
                 <p data-aos="fade-up" id="subtitle" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para Descargar la Guía Telefonica Digital debe Registrarse e ingresar a nuestra Oficina Virtual. <br>Para realizar busqueda por numero telefonico o por nombre y/o apellido, escriba los datos en el siguiente cuadro y luego presione Buscar</p>
                 {{-- <p data-aos="fade-up" data-aos-delay="100" style="color: rgb(255, 255, 255)">Para realizar busqueda por numero telefonico o por nombre y/o apellido, escriba los datos en el siguiente cuadro y luego presione Buscar</p> --}}
@@ -28,12 +28,11 @@
                 </div>
             </div>
           </div>
-          <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+          {{-- <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
             <img src="assets/img/hero-img.svg" class="img-fluid mb-3 mb-lg-0" alt="">
-          </div>
-          <div class="row" id="result">
-                <div class="table-responsive" id="div-results">
-                </div>
+          </div> --}}
+          <div class="row" style="padding: 13px;" id="div-results">
+           
           </div>
         </div>
 
@@ -48,7 +47,7 @@
 
   </section>
   <style> 
-      div.scroll {
+      /* div.scroll {
         height: 700px;
         overflow-x: hidden;
         overflow-y: auto;
@@ -62,7 +61,7 @@
 
       ::-webkit-scrollbar {
   width: 1px;
-}
+} */
 
       .my-class-form-control-group{
         display:flex;
