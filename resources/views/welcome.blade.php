@@ -7,7 +7,7 @@
 @section('main')
 <section id="heros" class="hero d-flex align-items-center">
   
-  <div class="dark-mask" style="width: 100%; position: relative;    ; height: 100vh">
+  <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4); height: 100vh">
     {{-- <h1>hola</h1> --}}
     <div class="container"style="padding: 120px 0 60px 0;">
       <div class="row">
