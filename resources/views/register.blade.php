@@ -72,7 +72,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-6 form-group" id="codes" style="display: none">
-                                <span ><b style="color: rgb(255, 255, 255)">Código</b></span>
+                                <span ><b style="color: rgb(255, 255, 255)">Código (*Opcional)</b></span>
                                 <input type="text" name="code" class="form-control" id="ci" placeholder="Código" value="{{ old('ci') }}" autocomplete="nope">
                                 <label class="label label-danger" style="color: rgb(255, 255, 255); font-size: 18px">Para averiguar el codigo cliente consultar en oficina de coteautri o llamar al </label>                                                                        
 
