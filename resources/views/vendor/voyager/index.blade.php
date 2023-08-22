@@ -71,11 +71,11 @@
         var fileName = this.files[0].name;
         var fileSize = this.files[0].size;
 
-            if(fileSize > 10000000){
+            if(fileSize > 100000000){
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'El archivo no debe superar los 10 MB!'
+                    text: 'El archivo no debe superar los 100 MB!'
                 })
                 this.value = '';
                 this.files[0].name = '';
