@@ -27,27 +27,36 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-block btn-success">
+            <button type="submit" class="btn btn-block btn-primary">
                 <span class="signingin hidden"><span class="voyager-refresh"></span> {{ __('voyager::login.loggingin') }}...</span>
                 <span class="signin">{{ __('voyager::generic.login') }}</span>
             </button>
-            
 
-            
-
-           
-             
         </form>
-            <a href="{{url('/')}}" class="btn btn-block btn-dark">Volver
-            </a>
+
+        {{-- <a href="{{url('/')}}" class="btn btn-block btn-dark">Volver</a> --}}
+        <br>
+        <div class="col-md-6">
+            <a id="idA_PWD_SwitchToFido" name="switchToFido" href="{{route('resetpassword.index')}}" data-bind="text: fidoLinkText, click: switchToFidoCredLink_onClick">Olvidatse Tu Contraseña?</a>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="{{ url('register') }}">Registrarse</a>
+        </div>
+
+        <div class="col-md-12 text-center">
             <br>
-            <a id="idA_PWD_SwitchToFido" name="switchToFido" href="{{route('resetpassword.index')}}" data-bind="
-                        text: fidoLinkText,
-                        click: switchToFidoCredLink_onClick">Olvidatse Tu Contraseña..?
+            <span>O</span>
+            <br>
+            <br>
+        </div>
+        <div class="col-md-12">
+            <a href="{{ url('/auth/redirect') }}?social=google" class="btn btn-block btn-default" style="background-color: #D9534F; color: white">
+                <span class=""> <i class="bi bi-google"></i> &nbsp; Iniciar con Google</span>
             </a>
-
-
-            
+            <a href="{{ url('/auth/redirect') }}?social=facebook" class="btn btn-block btn-primary" style="background-color: #257DF1; color: white">
+                <span class=""> <i class="bi bi-facebook"></i> &nbsp; Iniciar con Facebook</span>
+            </a>
+        </div>
 
         <div style="clear:both"></div>
 
@@ -62,9 +71,18 @@
         @endif
 
     </div> <!-- .login-container -->
+@endsection
 
-
-
+@section('pre_css')
+    <style>
+        .login-container{
+            top: 40% !important
+        }
+        .login-sidebar{
+            height: 100vh;
+            overflow: auto !important;
+        }
+    </style>
 @endsection
 
 @section('post_js')

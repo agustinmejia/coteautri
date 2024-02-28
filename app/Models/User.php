@@ -27,6 +27,7 @@ class User extends \TCG\Voyager\Models\User
         'name',
         'email',
         'password',
+        'avatar',
     ];
 
     public function people()
@@ -42,6 +43,8 @@ class User extends \TCG\Voyager\Models\User
     protected $hidden = [
         'password',
         'remember_token',
+        'google_id',
+        'facebook_id',
     ];
 
     /**

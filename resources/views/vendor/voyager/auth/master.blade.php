@@ -8,6 +8,7 @@
     <meta name="description" content="admin login">
     <title>@yield('title', 'Admin - '.Voyager::setting("admin.title"))</title>
     <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
+    <link href="{{asset('layout-template/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
     @if (__('voyager::generic.is_rtl') == 'true')
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css">
         <link rel="stylesheet" href="{{ voyager_asset('css/rtl.css') }}">

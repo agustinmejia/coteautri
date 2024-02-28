@@ -1,184 +1,157 @@
-@extends('layout-template.master')
+@extends('voyager::auth.master')
 
-<!-- ======= Hero Section ======= -->
-{{-- @include('layout-template.banner') --}}
-<!-- End Hero -->
-
-@section('main')
-<form  action="{{route('coteautri.store')}}" class="was-validateds" method="POST">
-    @csrf 
-<section id="hero" class="hero d-flex align-items-center">    
-    <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4); height: 100vh">
-    {{-- <div class="dark-mask" style="width: 100%; position: relative;background-color: #EDEDED"> --}}
-
-        <div class="container" style="padding: 120px 0 60px 0;">
-            {{-- <div class="section-title">
-                <h4 style="color:#002576">Registrate..</h4>
-                <p>Regístrate como Usuario, Socios u otros!.</p>
-            </div> --}}
-    
-            <br>
-            
-            <div class="row">
-                <div class="col-lg-3" >
+@section('content')
+    <div class="login-container">
+        <p>REGÍSTRATE AQUÍ:</p>
+        <form action="{{ route('coteautri.store') }}" method="POST">
+            @csrf
+            <div class="form-group form-group-default" id="emailGroup">
+                <label>Tipo de registro</label>
+                <div class="controls">
+                    <select name="type" class="form-control select2" >
+                        <option value="" disabled selected>--Seleccione una opción--</option>
+                        <option value="Usuario" {{ old('type')=='Usuario'?'selected':'' }}>Usuario</option>
+                        <option value="Socio" {{ old('type')=='Socio'?'selected':'' }}>Socio</option>
+                        <option value="Otros" {{ old('type')=='Otros'?'selected':'' }}>Otros</option>
+                    </select>
                 </div>
-
-                <div class="col-lg-6 scroll" >
-
-                    
-                        <div class="row">
-                            <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <span ><b style="color: rgb(255, 255, 255)">Tipo</b></span>
-                                <select name="type" id="type" class="form-control select2" required>
-                                    <option value="" disabled selected>--Seleccione una opción--</option>
-                                    <option value="Usuario" {{ old('type')=='Usuario'?'selected':'' }}>Usuario</option>
-                                    <option value="Socio" {{ old('type')=='Socio'?'selected':'' }}>Socio</option>
-                                    <option value="Otros" {{ old('type')=='Otros'?'selected':'' }}>Otros</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <span ><b style="color: rgb(255, 255, 255)">Telefono</b></span>
-                                <input type="text" id="phone" name="phone" class="form-control"  placeholder="Telefono" onkeypress='return validaNumericos(event)' value="{{ old('phone') }}" required>
-                                @error('phone')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>                          
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <span ><b style="color: rgb(255, 255, 255)">Nombre</b></span>
-                                <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Nombre" value="{{ old('first_name') }}" required autocomplete="nope">
-                                @error('first_name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <span ><b style="color: rgb(255, 255, 255)">Apellido</b></span>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Apellido" value="{{ old('last_name') }}" required autocomplete="nope">
-                                @error('last_name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                                                    
-                            <div class="col-md-6 form-group">
-                                <span ><b style="color: rgb(255, 255, 255)">Carnet Identidad</b></span>
-                                <input type="text" name="ci" onkeypress='return validaNumericos(event)' class="form-control" id="ci" placeholder="Carnet Identidad" value="{{ old('ci') }}" required autocomplete="nope">
-                                @error('ci')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 form-group" id="codes" style="display: none">
-                                <span ><b style="color: rgb(255, 255, 255)">Código (*Opcional)</b></span>
-                                <input type="text" name="code" class="form-control" id="ci" placeholder="Código" value="{{ old('ci') }}" autocomplete="nope">
-                                <label class="label label-danger" style="color: rgb(255, 255, 255); font-size: 18px">Para averiguar el codigo cliente consultar en oficina de coteautri o llamar al </label>                                                                        
-
-                                @error('ci')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <hr>
-                        {{-- <div class="section-title">
-                            <h4 style="color: #002576">Acceso</h4>
-                        </div> --}}
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <span ><b style="color: rgb(255, 255, 255)">Email</b></span>
-                                <input type="email" name="email" class="form-control" id="email" placeholder="Email" required autocomplete="nope">
-                                @error('email')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            
-                            <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <span ><b style="color: rgb(255, 255, 255)">Contraseña</b></span>
-                                <div class="form-group">
-                                    <div class="input-group">                                  
-                                      <input type="password" class="form-control" name="password" id="password" id="email" placeholder="*********" required>                                 
-                                      <div class="input-group-prepend">
-                                        <button class="btn btn-primary" type="button" onclick="mostrarContrasena()" id="boton"><span class="fa fa-eye"></span></button>                                   
-                                      </div>
-                                    </div>
-                                </div>    
-                                @error('password')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror                    
-                            </div>
-                        </div>
-                        
-                        <br>
-    
-                        <div style="text-align: right" >
-                            <button type="submit" class="btn btn-save-customer" id="btn-sumit" style="background-color: #08acf2;">Registrar</button>
-                        </div>
-                </div>
-                <div class="col-lg-3" >
-                </div>
-    
             </div>
-             
+
+            <div class="form-group form-group-default col-md-6" id="passwordGroup">
+                <label>Teléfono</label>
+                <div class="controls">
+                    <input type="text" id="phone" name="phone" class="form-control"  placeholder="Telefono" onkeypress='return validaNumericos(event)' value="{{ old('phone') }}" required>
+                    @error('phone')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="form-group form-group-default col-md-6" id="passwordGroup">
+                <label>CI</label>
+                <div class="controls">
+                    <input type="text" name="ci" onkeypress='return validaNumericos(event)' class="form-control" id="ci" placeholder="Carnet Identidad" value="{{ old('ci') }}" required autocomplete="none">
+                    @error('ci')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="form-group form-group-default col-md-6">
+                <label>Nombre(s)</label>
+                <div class="controls">
+                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Nombre" value="{{ old('first_name') }}" required autocomplete="none">
+                    @error('phone')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="form-group form-group-default col-md-6">
+                <label>Apellidos</label>
+                <div class="controls">
+                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Apellido" value="{{ old('last_name') }}" required autocomplete="none">
+                    @error('phone')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="form-group form-group-default col-md-6">
+                <label>Email</label>
+                <div class="controls">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" required autocomplete="none">
+                    @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="form-group form-group-default col-md-6">
+                <label>Contraseña</label>
+                <div class="controls">
+                    <input type="password" class="form-control" name="password" id="password" id="email" autocomplete="none" required>
+                    @error('password')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="form-group" id="rememberMeGroup">
+                <div class="controls">
+                    <label class="checkbox-inline"><input type="checkbox" name="terms" value="1" required>Estoy de acuerdo con los <a href="#">Términos y Condiciones</a> de uso</label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-block btn-primary">
+                    <span class="signingin hidden"><span class="voyager-refresh"></span> {{ __('voyager::login.loggingin') }}...</span>
+                    <span class="signin">Registrarse</span>
+                </button>
+            </div>
+        </form>
+        <div class="col-md-12 text-center">
+            <br>
+            <span>O</span>
+            <br>
+            <br>
         </div>
-
+        <div class="col-md-12">
+            <a href="{{ url('/auth/redirect') }}?social=google" class="btn btn-block btn-default" style="background-color: #D9534F; color: white">
+                <span class=""> <i class="bi bi-google"></i> &nbsp; Registrarse con Google</span>
+            </a>
+            <a href="{{ url('/auth/redirect') }}?social=facebook" class="btn btn-block btn-primary" style="background-color: #257DF1; color: white">
+                <span class=""> <i class="bi bi-facebook"></i> &nbsp; Registrarse con Facebook</span>
+            </a>
+        </div>
     </div>
+    <!-- .login-container -->
+@endsection
 
-  </section>
-</form>   
+@section('pre_css')
     <style>
-      div.scroll {
-        /* background-color: #6e4f6f; */
-        /* width: 600px; */
-        height: 600px;
-        overflow-x: hidden;
-        overflow-y: auto;
-        text-align: center;
-        padding: 20px;
-      }
-    </style>
-
-
-<script src="{{asset('js/jquery.min.js')}}"></script>
-
-    <script>        
-        function mostrarContrasena(){
-            // alert(1)
-            var tipo = document.getElementById("password");
-                if(tipo.type == "password"){
-                    $('#boton').html('<span class="fa fa-eye-slash"></span>');
-                    $('#password').prop('type', 'text');
-                }
-                else
-                {
-                    $('#boton').html('<span class="fa fa-eye"></span>');
-                    $('#password').prop('type', 'password');
-                }
+        .login-container{
+            top: 30% !important
         }
-    </script>
+        .login-sidebar{
+            height: 100vh;
+            overflow: auto !important;
+        }
+    </style>
+@endsection
+
+@section('post_js')
 
     <script>
-        $(function()
-        {
-            $('#type').on('change', input_code);
-        }); 
-        function input_code()
-        {      
-            var aux =  $(this).val();
-            // alert(1)
-            var x = document.getElementById("codes");
-            if(aux == 'Otros')
-            {
-                x.style.display = "none";
-            }
-            else
-            {
-                x.style.display = "block";
-            }
-        }
+        // var btn = document.querySelector('button[type="submit"]');
+        // var form = document.forms[0];
+        // var email = document.querySelector('[name="email"]');
+        // var password = document.querySelector('[name="password"]');
+        // btn.addEventListener('click', function(ev){
+        //     if (form.checkValidity()) {
+        //         btn.querySelector('.signingin').className = 'signingin';
+        //         btn.querySelector('.signin').className = 'signin hidden';
+        //     } else {
+        //         ev.preventDefault();
+        //     }
+        // });
+        // email.focus();
+        // document.getElementById('emailGroup').classList.add("focused");
+
+        // // Focus events for email and password fields
+        // email.addEventListener('focusin', function(e){
+        //     document.getElementById('emailGroup').classList.add("focused");
+        // });
+        // email.addEventListener('focusout', function(e){
+        //     document.getElementById('emailGroup').classList.remove("focused");
+        // });
+
+        // password.addEventListener('focusin', function(e){
+        //     document.getElementById('passwordGroup').classList.add("focused");
+        // });
+        // password.addEventListener('focusout', function(e){
+        //     document.getElementById('passwordGroup').classList.remove("focused");
+        // });
+
     </script>
-
-
-
 @endsection

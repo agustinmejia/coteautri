@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\TelephonyController;
 
+use Laravel\Socialite\Facades\Socialite;
+
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +28,42 @@ Route::get('home/search/{search?}', [TemplateController::class, 'list']);
 
 Route::get('login', function () {
     return redirect('admin/login');
+});
+
+Route::get('policies-privacy', function () {
+    return view('policies-privacy');
+});
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver(request('social'))->redirect();
+});
+ 
+Route::get('/auth/callback/facebook', function () {
+    $facebookUser = Socialite::driver('facebook')->stateless()->user();
+    $user = User::updateOrCreate([
+        'email' => $facebookUser->email,
+    ], [
+        'facebook_id' => $facebookUser->id,
+        'name' => $facebookUser->name,
+        'avatar' => $facebookUser->avatar ?? 'users/default.png',
+        'password' => Hash::make($facebookUser->id)
+    ]);
+    Auth::login($user);
+    return redirect('/admin');
+});
+
+Route::get('/auth/callback/google', function () {
+    $googleUser = Socialite::driver('google')->stateless()->user();
+    $user = User::updateOrCreate([
+        'email' => $googleUser->email,
+    ], [
+        'google_id' => $googleUser->id,
+        'name' => $googleUser->name,
+        'avatar' => $googleUser->avatar ?? 'users/default.png',
+        'password' => Hash::make($googleUser->id)
+    ]);
+    Auth::login($user);
+    return redirect('/admin');
 });
 
 Route::get('/', [TemplateController::class, 'index']);

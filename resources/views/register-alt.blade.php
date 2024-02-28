@@ -1,0 +1,100 @@
+@extends('layout-template.master')
+
+<!-- ======= Hero Section ======= -->
+{{-- @include('layout-template.banner') --}}
+<!-- End Hero -->
+
+@section('main')
+    <form  action="{{ route('coteautri.store') }}" class="was-validateds" method="POST">
+        @csrf 
+        <section id="hero" class="hero d-flex align-items-center">    
+            <div class="dark-mask" style="width: 100%; position: relative;background-color: rgba(0,0,0,0.4); height: 100vh">
+
+                <div class="container" style="padding: 120px 0 60px 0;">
+                    {{-- <div class="section-title">
+                        <h4 style="color:#002576">Registrate..</h4>
+                        <p>Regístrate como Usuario, Socios u otros!.</p>
+                    </div> --}}
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-3" >
+                        </div>
+                        <div class="col-lg-6 scroll" >
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <span ><b style="color: rgb(255, 255, 255)">Email</b></span>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" required autocomplete="nope">
+                                    @error('email')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                    <span ><b style="color: rgb(255, 255, 255)">Contraseña</b></span>
+                                    <div class="form-group">
+                                        <div class="input-group">                                  
+                                        <input type="password" class="form-control" name="password" id="password" id="email" placeholder="*********" required>
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-primary" type="button" onclick="mostrarContrasena()" id="boton"><span class="fa fa-eye"></span></button>
+                                        </div>
+                                        </div>
+                                    </div>    
+                                    @error('password')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror                    
+                                </div>
+                            </div>
+                            <br>
+                            <div style="text-align: right" >
+                                <button type="submit" class="btn btn-save-customer" id="btn-sumit" style="background-color: #08acf2;">Registrar</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+    <style>
+      div.scroll {
+        /* background-color: #6e4f6f; */
+        /* width: 600px; */
+        height: 600px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        text-align: center;
+        padding: 20px;
+      }
+    </style>
+
+
+<script src="{{asset('js/jquery.min.js')}}"></script>
+
+    <script>        
+        function mostrarContrasena(){
+            var tipo = document.getElementById("password");
+            if(tipo.type == "password"){
+                $('#boton').html('<span class="fa fa-eye-slash"></span>');
+                $('#password').prop('type', 'text');
+            }else{
+                $('#boton').html('<span class="fa fa-eye"></span>');
+                $('#password').prop('type', 'password');
+            }
+        }
+    </script>
+
+    <script>
+        $(function(){
+            $('#type').on('change', input_code);
+        }); 
+        function input_code(){
+            var aux =  $(this).val();
+            var x = document.getElementById("codes");
+            if(aux == 'Otros'){
+                x.style.display = "none";
+            }else{
+                x.style.display = "block";
+            }
+        }
+    </script>
+@endsection

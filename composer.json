@@ -10,11 +10,11 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
+        "laravel/socialite": "^5.12",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
         "orangehill/iseed": "^3.0",
         "tcg/voyager": "^1.6",
-        "villca/numeros-en-letras": "^1.2",
         "yadahan/laravel-authentication-log": "^1.6"
     },
     "require-dev": {
