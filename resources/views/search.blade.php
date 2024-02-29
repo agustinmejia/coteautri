@@ -16,7 +16,6 @@
                         @endphp
                         @forelse ($data as $item)
                             <tr>
-                                {{-- <td>{{ $i }}</td> --}}
                                 <td style="text-align: center">{{ $item->phone }}</td>
                                 <td>{{ $item->full_name}}</td>
                                 <td style="text-align: center">{{ $item->status}}</td>
@@ -44,7 +43,6 @@
                         @endphp
                         @forelse ($data as $item)
                             <tr>
-                                {{-- <td>{{ $i }}</td> --}}
                                 <td>{{ $item->full_name}}</td>
     
                                 <td style="text-align: center">{{ $item->phone }}</td>
@@ -63,14 +61,14 @@
                 @endif
             </table>
         </div>
-    </div>
-</div>
-
-<div class="col-md-12">
-    <div class="col-md-8" style="overflow-x:auto">
-        <nav class="text-right">
-            {{ $data->links() }}
-        </nav>
+        <br>
+        <div class="col-md-12">
+            <div class="col-md-8" style="overflow-x:auto">
+                <nav class="text-right">
+                    {{ $data->links() }}
+                </nav>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -94,6 +94,7 @@
         function download_log(cad)
         {
             // alert(cad)
+            console.log('{{route('download.log')}}/'+cad)
             $.get('{{route('download.log')}}/'+cad, function (data) {
                     // alert(data);
             });

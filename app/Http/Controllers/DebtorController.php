@@ -6,11 +6,12 @@ use App\Exports\DebtorExport;
 use App\Imports\DebtorImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Debtor;
-use App\Models\People;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+
+use App\Models\Debtor;
+use App\Models\People;
 
 class DebtorController extends Controller
 {
@@ -18,15 +19,13 @@ class DebtorController extends Controller
     {
         if(!Auth::user()->hasRole('admin') && Auth::user()->hasRole('user'))
         {
-            $user = People::where('user_id', Auth::user()->id)->first();
-            $debt = Debtor::where('code', $user->code)->where('deleted_at', null)->get();
-            // return $debt;
-            $year = DB::table('debtors')->where('code', $user->code)->where('deleted_at', null)->select('year')->groupBy('year')->get();
-            $mes = DB::table('debtors')->where('code', $user->code)->where('deleted_at', null)->where('status', 0)
+            $person = People::where('user_id', Auth::user()->id)->first();
+            $debt = Debtor::where('code', $person ? $person->code : null)->where('deleted_at', null)->get();
+            $year = DB::table('debtors')->where('code', $person ? $person->code : null)->where('deleted_at', null)->select('year')->groupBy('year')->get();
+            $mes = DB::table('debtors')->where('code', $person ? $person->code : null)->where('deleted_at', null)->where('status', 0)
                 ->select('month', 'year', DB::raw("SUM(amount) as monto"))->groupBy('month', 'year')->orderBy('month', 'ASC')->orderBy('year', 'ASC')->get();
-            // return $mes;
 
-            return view('debtor.browse', compact('user', 'debt', 'year', 'mes'));
+            return view('debtor.browse', compact('person', 'debt', 'year', 'mes'));
         }
         if(Auth::user()->hasRole('admin'))
         {
@@ -81,6 +80,34 @@ class DebtorController extends Controller
         $data = Debtor::where('deleted_at',null)->get();
         return Excel::download(new DebtorExport($data), 'Consulta'.$date.'.xlsx');
     }
+
+    public function store(Request $request){
+        // dd($request->all());
+        $validated = $request->validate([
+            'first_name' => 'required|max:191',
+            'last_name' => 'required|max:191',
+            'code' => 'required|unique:people|max:10',
+        ]);
+        
+        try {
+            People::create([
+                'user_id' => Auth::user()->id,
+                'ci' => $request->ci,
+                'phone' => $request->phone,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'type' => 'Socio',
+                'code' => $request->code
+            ]);
+
+            return redirect()->route('voyager.debtors.index')->with(['message' => 'Datos registrados', 'alert-type' => 'success']);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->route('voyager.debtors.index')->with(['message' => 'Ocurrió un error', 'alert-type' => 'error']);
+        }
+    }
+
     public function destroy(Request $request)
     {
         DB::beginTransaction();

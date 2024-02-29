@@ -30,11 +30,6 @@ class User extends \TCG\Voyager\Models\User
         'avatar',
     ];
 
-    public function people()
-    {
-        return $this->hasMany(People::class, 'user_id');
-    }
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -55,4 +50,13 @@ class User extends \TCG\Voyager\Models\User
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function people(){
+        return $this->hasMany(People::class, 'user_id');
+    }
+
+    public function scopeEnable($query){
+        return $query->where('role_id', 2);
+        // return $query->whereRaw("id not in (select user_id from people where status = 1 and deleted_at is null)");
+    }
 }

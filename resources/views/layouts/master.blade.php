@@ -52,7 +52,7 @@
             <!-- Nav Menu -->
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="{{ url('') }}" class="active">Inicio</a></li>
+                    <li><a href="{{ url('') }}">Inicio</a></li>
                     <li><a href="{{ url('login') }}">Iniciar sesión</a></li>
                 </ul>
 
@@ -95,7 +95,7 @@
                 <ul>
                     <li><a href="https://www.coteautri.bo/">Página principal</a></li>
                     <li><a href="#">Acerca de</a></li>
-                    <li><a href="#">Políticas de privacidad</a></li>
+                    <li><a href="{{ url('policies-privacy') }}">Políticas de privacidad</a></li>
                     <li><a href="#">Condiciones de uso</a></li>
                 </ul>
             </div>
@@ -157,6 +157,7 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
 
+    <script src="{{asset('js/jquery.min.js')}}"></script>
     @yield('script')
 
 </body>

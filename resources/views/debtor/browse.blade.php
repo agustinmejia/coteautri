@@ -61,14 +61,14 @@
                         @php
                             $months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');    
                         @endphp
-                        @if(!auth()->user()->hasRole('admin') && auth()->user()->hasRole('user'))
+                        @if(!auth()->user()->hasRole('admin') && auth()->user()->hasRole('user') && $person)
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="panel-heading" style="border-bottom:0;">
                                         <h3 id="h4" class="panel-title">CI</h3>
                                     </div>
                                     <div class="panel-body" style="padding-top:0;">
-                                        <small>{{$user->ci}}</small>
+                                        <small>{{$person->ci}}</small>
                                     </div>
                                     <hr style="margin:0;">
                                 </div>
@@ -77,7 +77,7 @@
                                         <h3 id="h4" class="panel-title">Nombre Completo</h3>
                                     </div>
                                     <div class="panel-body" style="padding-top:0;">
-                                        <small>{{$user->first_name}} {{$user->last_name}}</small>
+                                        <small>{{$person->first_name}} {{$person->last_name}}</small>
                                     </div>
                                     <hr style="margin:0;">
                                 </div>    
@@ -86,8 +86,8 @@
                                         <h3 id="h4" class="panel-title">Codigo Cliente</h3>
                                     </div>
                                     <div class="panel-body" style="padding-top:0;">
-                                        @if ($user->code)
-                                            <small>{{$user->code}}</small>
+                                        @if ($person->code)
+                                            <small>{{$person->code}}</small>
                                         @else
                                             <label class="label label-danger">Porfavor solicite su codigo de cliente en las oficinas de Coteautri </label>                                                                        
                                         @endif
@@ -95,102 +95,53 @@
                                     <hr style="margin:0;">
                                 </div>                          
                             </div>      
-                                <div class="table-responsive">
-                                    {{-- <table id="dataStyle" class="table-hover">
-                                        <thead>
-                                            <tr>   
-                                                <th width="4%" rowspan="2" style="text-align: center">Año</th>
-                                                <th colspan="12" style="text-align: center">Meses</th>
-                                            </tr>
-                                            <tr>
-                                                @foreach ($months as $item)
-                                                    <th width="8%" style="text-align: center">{{$item}}
-                                                        
-                                                    </th> 
-                                                @endforeach
-                                            </tr>                                           
-                                        </thead>
-                                        <tbody>
-                                            @if (count($debt)>0)
-                                                @foreach ($year as $y)
-                                                    <tr>
-                                                        <th style="text-align: center">{{$y->year}}</th>
-                                                        @for ($i = 1; $i <= count($months); $i++)
-                                                            @php
-                                                                $ok=true;
-                                                            @endphp
-                                                            @foreach ($mes as $m)                                                            
-                                                                @if ($y->year == $m->year && $i==$m->month)
-                                                                    @php
-                                                                        $ok=false;
-                                                                    @endphp
-                                                                    <td style="text-align: center">Bs. {{$m->monto}}
-                                                                        <br>
-                                                                        <a title="Detalle del mes {{$months[$i-1]}}" class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#show-modal"
-                                                                            data-mes="{{$months[$i-1]}}"
-                                                                            data-mes_id="{{$m->month}}"
-                                                                            data-ano="{{$y->year}}"
-                                                                        >
-                                                                            <i class="fa-solid fa-eye"></i><span class="hidden-xs hidden-sm"> Ver</span>
-                                                                        </a>
-                                                                    </td>                                                                    
-                                                                @endif
-                                                            @endforeach      
-                                                            @if ($ok)
-                                                                <td style="text-align: center"></td>      
-                                                            @endif                                                      
-                                                        @endfor        
-                                                    </tr>
-                                                @endforeach
-                                            @else
-                                                <tr style="text-align: center">
-                                                    <td colspan="13">No se encontraron registros.</td>
-                                                </tr>
-                                            @endif
-                                                                                                                   
-                                        </tbody>
-                                    </table> --}}
-                                    <table id="dataStyle" style="margin-left:auto;margin-right:auto;" class="table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th style="text-align: center">Mes</th>    
-                                                <th style="text-align: center">Año</th>       
-                                                <th style="text-align: center">Deuda</th>       
-                                                <th width="10px" style="text-align: center">Acción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                            <div class="table-responsive">
+                                <table id="dataStyle" style="margin-left:auto;margin-right:auto;" class="table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center">Mes</th>    
+                                            <th style="text-align: center">Año</th>       
+                                            <th style="text-align: center">Deuda</th>       
+                                            <th width="10px" style="text-align: center">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $i=1;
+                                        @endphp
+                                        @forelse ($mes as $item)
                                             @php
-                                                $i=1;
+                                                $debt =\DB::table('debtors')->where('code',$person->code)->where('month', $item->month)->where('year', $item->year)->where('deleted_at', null)
+                                                    ->where('status', 0)->select('amount')->sum('amount');
+                                                    // dd($debt);
                                             @endphp
-                                            @forelse ($mes as $item)
-                                                @php
-                                                    $debt =\DB::table('debtors')->where('code',$user->code)->where('month', $item->month)->where('year', $item->year)->where('deleted_at', null)
-                                                        ->where('status', 0)->select('amount')->sum('amount');
-                                                        // dd($debt);
-                                                @endphp
-                                                <tr>
-                                                    <td style="text-align: center">{{$months[$item->month-1]}}</td>
-                                                    <td style="text-align: center">{{ $item->year}}</td>
-                                                    <td style="text-align: right"><small>Bs. {{ $debt}}</small></td>
-                                                    <td style="text-align: center">
-                                                        <a title="Detalle del mes {{$months[$item->month-1]}}" class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#show-modal"
-                                                                            data-mes="{{$months[$item->month-1]}}"
-                                                                            data-mes_id="{{$item->month}}"
-                                                                            data-ano="{{$item->year}}"
-                                                        >
-                                                            <i class="fa-solid fa-eye"></i><span class="hidden-xs hidden-sm"> Ver</span>
-                                                        </a>
-                                                    </td>                        
-                                                </tr>
-                                            @empty
-                                                <tr style="text-align: center">
-                                                    <td colspan="3" class="dataTables_empty">No hay datos disponibles en la tabla</td>
-                                                </tr>
-                                            @endforelse                                                                             
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            <tr>
+                                                <td style="text-align: center">{{$months[$item->month-1]}}</td>
+                                                <td style="text-align: center">{{ $item->year}}</td>
+                                                <td style="text-align: right"><small>Bs. {{ $debt}}</small></td>
+                                                <td style="text-align: center">
+                                                    <a title="Detalle del mes {{$months[$item->month-1]}}" class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#show-modal"
+                                                                        data-mes="{{$months[$item->month-1]}}"
+                                                                        data-mes_id="{{$item->month}}"
+                                                                        data-ano="{{$item->year}}"
+                                                    >
+                                                        <i class="fa-solid fa-eye"></i><span class="hidden-xs hidden-sm"> Ver</span>
+                                                    </a>
+                                                </td>                        
+                                            </tr>
+                                        @empty
+                                            <tr style="text-align: center">
+                                                <td colspan="4" class="dataTables_empty">No hay datos disponibles en la tabla</td>
+                                            </tr>
+                                        @endforelse                                                                             
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            <div class="col-md-12 text-center">
+                                <h3>No tiene una línea registrada <i class="fa fa-ban"></i></h3>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">Agregar línea <i class="voyager-plus"></i></button>
+                            </div>
                         @endif
                         @if(auth()->user()->hasRole('admin'))
                             <div class="row">
@@ -278,7 +229,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title"><i class="voyager-trash"></i> Eliminar?</h4>
+                        <h4 class="modal-title"><i class="voyager-trash"></i> Desea eliminar?</h4>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
@@ -301,10 +252,59 @@
         </div>
     </form>
   
-
-
-
- 
+    {{-- Modal add --}}
+    <form class="form-submit" id="form-add" action="{{ route('debtor.store') }}" method="post">
+        @csrf
+        <div class="modal fade modal-option" tabindex="-1" id="modal-add" role="dialog">
+            <div class="modal-dialog modal-primary">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"><i class="voyager-plus"></i> Registrar línea</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nombres(s)</label>
+                            <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" placeholder="Juan" required>
+                            @error('first_name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Apellidos</label>
+                            <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" placeholder="Perez" required>
+                            @error('last_name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>CI</label>
+                            <input type="text" name="ci" class="form-control" placeholder="12345678" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono/Celular</label>
+                            <input type="phone" name="phone" class="form-control" placeholder="75199157">
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono/Celular</label>
+                            <input type="mail" name="email" class="form-control" placeholder="ejemplo@mail.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Código de cliente</label>
+                            <input type="text" name="code" class="form-control @error('code') is-invalid @enderror" placeholder="4621234" required>
+                            @error('code')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-primary btn-submit" value="Registrar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 @stop
 
 @section('css')
@@ -382,7 +382,7 @@
         <script>
             $('#show-modal').on('show.bs.modal', function (event)
             {
-                var code = {{$user->code}};
+                var code = {{ $person ? $person->code : '' }};
                 var button = $(event.relatedTarget);
 
                 var mes = button.data('mes');
@@ -438,6 +438,10 @@
         var countPage = 10, order = 'id', typeOrder = 'desc';
         $(document).ready(() => {
             list();
+
+            @error('code')
+                $('#modal-add').modal('show');
+            @enderror
             
             $('#input-search').on('keyup', function(e){
                 if(e.keyCode == 13) {

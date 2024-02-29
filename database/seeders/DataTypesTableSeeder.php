@@ -34,8 +34,8 @@ class DataTypesTableSeeder extends Seeder
                 'generate_permissions' => 1,
                 'server_side' => 0,
                 'details' => NULL,
-                'created_at' => '2023-02-25 04:00:55',
-                'updated_at' => '2023-02-25 04:00:55',
+                'created_at' => '2023-02-25 00:00:55',
+                'updated_at' => '2023-02-25 00:00:55',
             ),
             1 => 
             array (
@@ -52,8 +52,8 @@ class DataTypesTableSeeder extends Seeder
                 'generate_permissions' => 1,
                 'server_side' => 0,
                 'details' => NULL,
-                'created_at' => '2023-02-25 04:00:55',
-                'updated_at' => '2023-02-25 04:00:55',
+                'created_at' => '2023-02-25 00:00:55',
+                'updated_at' => '2023-02-25 00:00:55',
             ),
             2 => 
             array (
@@ -70,8 +70,8 @@ class DataTypesTableSeeder extends Seeder
                 'generate_permissions' => 1,
                 'server_side' => 0,
                 'details' => NULL,
-                'created_at' => '2023-02-25 04:00:55',
-                'updated_at' => '2023-02-25 04:00:55',
+                'created_at' => '2023-02-25 00:00:55',
+                'updated_at' => '2023-02-25 00:00:55',
             ),
             3 => 
             array (
@@ -88,8 +88,8 @@ class DataTypesTableSeeder extends Seeder
                 'generate_permissions' => 1,
                 'server_side' => 0,
                 'details' => NULL,
-                'created_at' => '2023-02-25 04:03:00',
-                'updated_at' => '2023-02-25 04:03:00',
+                'created_at' => '2023-02-25 00:03:00',
+                'updated_at' => '2023-02-25 00:03:00',
             ),
             4 => 
             array (
@@ -106,8 +106,8 @@ class DataTypesTableSeeder extends Seeder
                 'generate_permissions' => 1,
                 'server_side' => 0,
                 'details' => NULL,
-                'created_at' => '2023-02-25 04:03:00',
-                'updated_at' => '2023-02-25 04:03:00',
+                'created_at' => '2023-02-25 00:03:00',
+                'updated_at' => '2023-02-25 00:03:00',
             ),
             5 => 
             array (
@@ -124,16 +124,16 @@ class DataTypesTableSeeder extends Seeder
                 'generate_permissions' => 1,
                 'server_side' => 0,
                 'details' => NULL,
-                'created_at' => '2023-02-25 04:03:00',
-                'updated_at' => '2023-02-25 04:03:00',
+                'created_at' => '2023-02-25 00:03:00',
+                'updated_at' => '2023-02-25 00:03:00',
             ),
             6 => 
             array (
                 'id' => 7,
                 'name' => 'people',
                 'slug' => 'people',
-                'display_name_singular' => 'Persona',
-                'display_name_plural' => 'Personas',
+                'display_name_singular' => 'Socio',
+                'display_name_plural' => 'Socios',
                 'icon' => 'voyager-people',
                 'model_name' => 'App\\Models\\People',
                 'policy_name' => NULL,
@@ -142,8 +142,8 @@ class DataTypesTableSeeder extends Seeder
                 'generate_permissions' => 1,
                 'server_side' => 0,
                 'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
-                'created_at' => '2023-02-26 17:18:30',
-                'updated_at' => '2023-03-07 13:42:40',
+                'created_at' => '2023-02-26 13:18:30',
+                'updated_at' => '2024-02-29 03:59:11',
             ),
             7 => 
             array (
@@ -160,8 +160,8 @@ class DataTypesTableSeeder extends Seeder
                 'generate_permissions' => 1,
                 'server_side' => 0,
                 'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
-                'created_at' => '2023-03-09 21:24:50',
-                'updated_at' => '2023-03-09 21:32:31',
+                'created_at' => '2023-03-09 17:24:50',
+                'updated_at' => '2023-03-09 17:32:31',
             ),
         ));
         

@@ -867,16 +867,17 @@ section,
   box-shadow: none;
 }
 
-.hero .sign-up-form input[type=submit] {
+.hero .sign-up-form button {
   box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   padding: 8px 20px 10px 20px;
   border-radius: 7px;
   color: var(--contrast-color);
+  width: 150px;
 }
 
-.hero .sign-up-form input[type=submit]:hover {
+.hero .sign-up-form button {
   background-color: rgba(var(--accent-color-rgb), 0.9);
 }
 
