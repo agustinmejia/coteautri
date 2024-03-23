@@ -9,7 +9,7 @@
 
     <table width="100%">
         <tr>
-            <td style="width: 20%"><img src="{{ asset('img/icon.png') }}" alt="CAPRESI" width="70px"></td>
+            <td style="width: 20%"><img src="{{ asset('img/cropped-isotipo-trans-192x192.png') }}" alt="CAPRESI" width="70px"></td>
             <td style="text-align: center;  width:50%">
                 <h3 style="margin-bottom: 0px; margin-top: 5px">
                     COTEAUTRI<br>

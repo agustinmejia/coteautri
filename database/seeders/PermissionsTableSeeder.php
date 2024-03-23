@@ -50,6 +50,9 @@ class PermissionsTableSeeder extends Seeder
 
         Permission::generateFor('people');
         Permission::generateFor('telephony');
+        Permission::generateFor('finances');
+        Permission::generateFor('index_pdfs');
+        Permission::generateFor('regulations');
 
         $keys = [
             'browse_debtors',

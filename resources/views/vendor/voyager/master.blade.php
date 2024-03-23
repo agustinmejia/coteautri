@@ -16,7 +16,7 @@
     <!-- Favicon -->
     <?php $admin_favicon = Voyager::setting('admin.icon_image', ''); ?>
     @if($admin_favicon == '')
-        <link rel="shortcut icon" href="{{ voyager_asset('images/logo-icon.png') }}" type="image/png">
+        <link rel="shortcut icon" href="{{ asset('img/cropped-isotipo-trans-192x192.png') }}" type="image/png">
     @else
         <link rel="shortcut icon" href="{{ Voyager::image($admin_favicon) }}" type="image/png">
     @endif
@@ -67,6 +67,25 @@
     @else
         <img src="{{ Voyager::image($admin_loader_img) }}" alt="Voyager Loader">
     @endif
+</div>
+
+<div class="modal modal-danger fade in" tabindex="-1" id="delete-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title"><i class="voyager-trash"></i> ¿Estás seguro que deseas eliminar el siguiente registro?</h4>
+            </div>
+            <div class="modal-footer">
+                <form action="" id="delete-form" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" class="btn btn-danger pull-right delete-confirm" value="Sí, ¡Bórralo!">
+                </form>
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php
@@ -156,6 +175,10 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
         $(document).ready(function(){
             $('.form-submit').submit(function(){
                 $('.btn-submit').attr('disabled', 'disabled');
+            });
+
+            $('.btn-delete').click(function(){
+                $('#delete-form').attr('action', $(this).data('action'));
             });
         });
     </script>

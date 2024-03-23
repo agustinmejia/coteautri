@@ -34,6 +34,10 @@ Route::get('policies-privacy', function () {
     return view('policies-privacy');
 });
 
+Route::get('terms', function () {
+    return view('terms');
+});
+
 Route::get('/auth/redirect', function () {
     return Socialite::driver(request('social'))->redirect();
 });

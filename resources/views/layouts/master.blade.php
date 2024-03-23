@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Consulta | Coteautri</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <title>@yield('page_title', 'Consulta') | {{ setting('site.title') }}</title>
+    <meta content="{{ setting('site.description') }}" name="description">
+    <meta content="coteautri, agenda, trinidad, beni" name="keywords">
+
+    @yield('seo')
 
     <!-- Favicons -->
     <link href="{{ asset('img/cropped-isotipo-trans-192x192.png') }}" rel="icon">
@@ -79,9 +81,9 @@
             <div class="row gy-4">
             <div class="col-lg-5 col-md-12 footer-about">
                 <a href="index.html" class="logo d-flex align-items-center">
-                <span>Coteautri</span>
+                <span>{{ setting('site.title') }}</span>
                 </a>
-                <p>Cooperativa de Telecomunicaciones Trinidad RL</p>
+                <p>{{ setting('site.description') }}</p>
                 <div class="social-links d-flex mt-4">
                 <a href="#"><i class="bi bi-twitter"></i></a>
                 <a href="https://www.facebook.com/coteautri/" target="_blank"><i class="bi bi-facebook"></i></a>
@@ -96,7 +98,7 @@
                     <li><a href="https://www.coteautri.bo/">Página principal</a></li>
                     <li><a href="#">Acerca de</a></li>
                     <li><a href="{{ url('policies-privacy') }}">Políticas de privacidad</a></li>
-                    <li><a href="#">Condiciones de uso</a></li>
+                    <li><a href="{{ url('terms') }}">Condiciones de uso</a></li>
                 </ul>
             </div>
 
@@ -122,7 +124,7 @@
         </div>
 
         <div class="container copyright text-center mt-4">
-            <p>&copy; <span>Copyright</span> <strong class="px-1">Coteautri</strong> <span>Todos los derechos reservados</span></p>
+            <p>&copy; <span>Copyright</span> <strong class="px-1">{{ setting('site.title') }}</strong> <span>Todos los derechos reservados</span></p>
             <div class="credits">
             <!-- All the links in the footer should remain intact. -->
             <!-- You can delete the links only if you've purchased the pro version. -->

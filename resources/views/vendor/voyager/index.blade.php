@@ -32,7 +32,7 @@
                 @endphp
                 @foreach ($aux as $item)
                     <div class="col-md-6" >
-                        <img src="{{asset('storage/'.$item->image)}}" alt="" style="height:350px; width: 400px">                    
+                        <img src="{{asset('storage/'.$item->image)}}" alt="" style="max-width: 400px; width: 100%">
 
                         @if(auth()->user()->hasRole('admin'))
                             <a href="{{route('delete.image', ['id'=>$item->id])}}" class="btn btn-danger" data-toggle="modal" style="width: 50px; height:40px">
@@ -86,35 +86,6 @@
                 case 'jpg':
                 case 'jpeg':
                 case 'png': break;
-                default:
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'El archivo no tiene la extensión adecuada!'
-                    })
-                    this.value = ''; // reset del valor
-                    this.files[0].name = '';
-            }
-    });
-    
-
-    $(document).on('change','.imageLengthpdf',function(){
-        var fileName = this.files[0].name;
-        var fileSize = this.files[0].size;
-
-            if(fileSize > 10000000){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'El archivo no debe superar los 10 MB!'
-                })
-                this.value = '';
-                this.files[0].name = '';
-            }
-            var ext = fileName.split('.').pop();
-            ext = ext.toLowerCase();
-            switch (ext) {
-                case 'pdf': break;
                 default:
                     Swal.fire({
                         icon: 'error',

@@ -18,7 +18,7 @@
                             <tr>
                                 <td style="text-align: center">{{ $item->phone }}</td>
                                 <td>{{ $item->full_name}}</td>
-                                <td style="text-align: center">{{ $item->status}}</td>
+                                <td style="text-align: center"><span class="badge bg-success">Activo</span></td>
                             </tr>
                             @php
                                 $i++;
@@ -44,9 +44,8 @@
                         @forelse ($data as $item)
                             <tr>
                                 <td>{{ $item->full_name}}</td>
-    
                                 <td style="text-align: center">{{ $item->phone }}</td>
-                                <td style="text-align: center">{{ $item->status}}</td>
+                                <td style="text-align: center"><span class="badge bg-success">Activo</span></td>
     
                             </tr>
                             @php

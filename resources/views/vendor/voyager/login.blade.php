@@ -27,10 +27,12 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-block btn-primary">
-                <span class="signingin hidden"><span class="voyager-refresh"></span> {{ __('voyager::login.loggingin') }}...</span>
-                <span class="signin">{{ __('voyager::generic.login') }}</span>
-            </button>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-block btn-primary">
+                    <span class="signingin hidden"><span class="voyager-refresh"></span> {{ __('voyager::login.loggingin') }}...</span>
+                    <span class="signin">{{ __('voyager::generic.login') }}</span>
+                </button>
+            </div>
 
         </form>
 
@@ -41,21 +43,6 @@
         </div>
         <div class="col-md-6 text-right">
             <a href="{{ url('register') }}">Registrarse</a>
-        </div>
-
-        <div class="col-md-12 text-center">
-            <br>
-            <span>O</span>
-            <br>
-            <br>
-        </div>
-        <div class="col-md-12">
-            <a href="{{ url('/auth/redirect') }}?social=google" class="btn btn-block btn-default" style="background-color: #D9534F; color: white">
-                <span class=""> <i class="bi bi-google"></i> &nbsp; Iniciar con Google</span>
-            </a>
-            <a href="{{ url('/auth/redirect') }}?social=facebook" class="btn btn-block btn-primary" style="background-color: #257DF1; color: white">
-                <span class=""> <i class="bi bi-facebook"></i> &nbsp; Iniciar con Facebook</span>
-            </a>
         </div>
 
         <div style="clear:both"></div>
@@ -70,6 +57,21 @@
             </div>
         @endif
 
+        <div class="col-md-12 text-center">
+            <br>
+        </div>
+        <div class="col-md-12">
+            <a href="{{ url('/auth/redirect') }}?social=google" class="btn btn-block btn-default" style="background-color: #D9534F; color: white">
+                <span class=""> <i class="bi bi-google"></i> &nbsp; Iniciar con Google</span>
+            </a>
+            <a href="{{ url('/auth/redirect') }}?social=facebook" class="btn btn-block btn-primary" style="background-color: #257DF1; color: white">
+                <span class=""> <i class="bi bi-facebook"></i> &nbsp; Iniciar con Facebook</span>
+            </a>
+            <br>
+            <div class="text-center">
+                <a href="{{ url('/') }}">Volver a la página principal</a>
+            </div>
+        </div>
     </div> <!-- .login-container -->
 @endsection
 

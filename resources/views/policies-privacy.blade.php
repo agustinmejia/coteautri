@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@section('page_title', 'Políticas de Privacidad')
 
 @section('content')
     <!-- Blog Page Title & Breadcrumbs -->

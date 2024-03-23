@@ -137,7 +137,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        @else
+                        @elseif(!auth()->user()->hasRole('admin'))
                             <div class="col-md-12 text-center">
                                 <h3>No tiene una línea registrada <i class="fa fa-ban"></i></h3>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">Agregar línea <i class="voyager-plus"></i></button>

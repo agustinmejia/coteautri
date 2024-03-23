@@ -22,9 +22,7 @@ class PermissionRoleTableSeeder extends Seeder
         \DB::table('permission_role')->delete();
         
         $role = Role::where('name', 'admin')->firstOrFail();
-
         $permissions = Permission::all();
-
         $role->permissions()->sync(
             $permissions->pluck('id')->all()
         );
@@ -34,7 +32,10 @@ class PermissionRoleTableSeeder extends Seeder
         //############## PEOPLE ######################
         $role = Role::where('name', 'user')->firstOrFail();
         $permissions = Permission::whereRaw('table_name = "admin" or
-                                            `key` = "browse_debtors" or        
+                                            `key` = "browse_debtors" or
+                                            `key` = "browse_finances" or
+                                            `key` = "browse_index_pdfs" or
+                                            `key` = "browse_regulations" or
                                             `key` = "browse_clear-cache"')->get();
         $role->permissions()->sync($permissions->pluck('id')->all());
         

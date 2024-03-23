@@ -8,7 +8,7 @@
     <!-- Favicon -->
     <?php $admin_favicon = Voyager::setting('admin.icon_image', ''); ?>
     @if($admin_favicon == '')
-        <link rel="shortcut icon" href="{{ asset('img/icon.png') }}" type="image/png">
+        <link rel="shortcut icon" href="{{ asset('img/cropped-isotipo-trans-192x192.png') }}" type="image/png">
     @else
         <link rel="shortcut icon" href="{{ Voyager::image($admin_favicon) }}" type="image/png">
     @endif
@@ -51,7 +51,7 @@
         <button class="btn-print" onclick="window.print()"> Imprimir <i class="fa fa-print"></i></button>
     </div>
     <div id="watermark">
-        <img src="{{ asset('img/icon.png') }}" /> 
+        <img src="{{ asset('img/cropped-isotipo-trans-192x192.png') }}" /> 
     </div>
     
     <div class="content">

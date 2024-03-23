@@ -10,6 +10,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Models\IndexImage;
@@ -68,7 +69,7 @@ class Controller extends BaseController
 
     public function indexpdf(Request $request)
     {
-        // return $request;
+        // dd($request->all());
         DB::beginTransaction();
         try {
             $file = $request->file('file');
@@ -77,13 +78,12 @@ class Controller extends BaseController
                 // return 1;
 
                 $pdf = $this->file($file,Auth::user()->id, "index/pdf");
-                // return 1;
-                // IndexPdf::where('status', 1)->update(['status'=>0]);
                 IndexPdf::create([
-                    'file'=>$pdf,
-                    'registerUser_id'=>Auth::user()->id,
+                    'file' => $pdf,
+                    'registerUser_id' => Auth::user()->id,
                     'name' => $request->name,
-                    'url'=>$request->url
+                    'cover' => $this->store_image($request->file('cover'), 'covers'),
+                    'url' => $request->url
                 ]);
                 DB::commit();
                 return redirect()->route('guia.index')->with(['message' => 'Agregado exitosamente.', 'alert-type' => 'success']);
@@ -102,7 +102,7 @@ class Controller extends BaseController
     public function deletepdf($id)
     {
         // return $id;
-        IndexPdf::where('id', $id)->update(['status'=>0]);
+        IndexPdf::where('id', $id)->update(['status' => 0]);
         return redirect()->route('guia.index')->with(['message' => 'Eliminado exitosamente.', 'alert-type' => 'success']);
     }
 
@@ -111,5 +111,38 @@ class Controller extends BaseController
         // return $id;
         IndexImage::where('id', $id)->update(['status'=>0]);
         return redirect()->route('voyager.dashboard')->with(['message' => 'Eliminado exitosamente.', 'alert-type' => 'success']);
+    }
+
+
+    // =======================================
+
+    public function store_image($file, $folder, $size = 512){
+        try {
+            Storage::makeDirectory($folder.'/'.date('F').date('Y'));
+            $base_name = Str::random(20);
+
+            // imagen normal
+            $filename = $base_name.'.'.$file->getClientOriginalExtension();
+            $image_resize = Image::make($file->getRealPath())->orientate();
+            $image_resize->resize($size, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $path =  $folder.'/'.date('F').date('Y').'/'.$filename;
+            $image_resize->save(public_path('../storage/app/public/'.$path));
+
+            // imagen cuadrada
+            $filename_small = $base_name.'-cropped.'.$file->getClientOriginalExtension();
+            $image_resize = Image::make($file->getRealPath())->orientate();
+            $image_resize->resize(null, 256, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $image_resize->resizeCanvas(256, 256);
+            $path_small = "$folder/".date('F').date('Y').'/'.$filename_small;
+            $image_resize->save(public_path('../storage/app/public/'.$path_small));
+
+            return $path;
+        } catch (\Throwable $th) {
+            return null;
+        }
     }
 }

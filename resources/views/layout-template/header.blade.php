@@ -3,7 +3,7 @@
 
       <a href="https://www.coteautri.bo/" target="_blank" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img src="{{asset('img/icon.png')}}" width="250" height="400" alt="InternetCtrl">
+        <img src="{{asset('img/cropped-isotipo-trans-192x192.png')}}" width="250" height="400" alt="InternetCtrl">
         {{-- <h1>Logis</h1> --}}
       </a>
 

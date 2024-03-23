@@ -1,5 +1,16 @@
 @extends('layouts.master')
 
+@section('page_title', 'Consulta')
+
+@section('seo')
+    <meta property="og:url"           content="{{ url('/') }}" />
+	<meta property="og:type"          content="Phone library" />
+	<meta property="og:title"         content="Consulta - {{ setting('site.title') }}" />
+	<meta property="og:description"   content="{{ setting('site.description') }}" />
+	<meta property="og:image"         content="{{ asset('img/cropped-isotipo-trans-192x192.png') }}" />
+	<meta name="keywords" content="coteautri, trinidad, beni, agenda">
+@endsection
+
 @section('content')
     <!-- Hero Section - Home Page -->
     <section id="hero" class="hero">
@@ -8,7 +19,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 mb-3">
                     <h2 data-aos="fade-up" data-aos-delay="100">Consulta del Directorio Telefónico</h2>
                     <p data-aos="fade-up" data-aos-delay="200">Para realizar busqueda por numero telefonico o por nombre y/o apellido, escriba los datos en el siguiente cuadro y luego presione Buscar</p>
                     <form action="#" class="sign-up-form d-flex" data-aos="fade-up" data-aos-delay="300">
